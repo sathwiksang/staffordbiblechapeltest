@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colonial Hills Bible Chapel - Welcome Home</title>
+    <meta name="description" content="A warm, Christ-centered community gathering for worship, fellowship, and Biblical teaching in Stafford City">
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            /* Beautiful warm color palette */
+            --primary: #7c5e4a;
+            --primary-dark: #5a4336;
+            --primary-light: #9b7a65;
+            --accent: #d4a574;
+            --accent-gold: #e8c5a0;
+            --cream: #faf8f3;
+            --warm-white: #ffffff;
+            --soft-gray: #6b6b6b;
+            --text-dark: #2c2c2c;
+            --text-light: #5a5a5a;
+            --border-light: #e8e3db;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-dark: rgba(0, 0, 0, 0.15);
+            
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --font-elegant: 'Cormorant Garamond', serif;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: var(--warm-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Beautiful Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            position: relative;
+            margin-bottom: var(--space-xl);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: var(--space-md);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: var(--space-md);
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 0 8px 8px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Header - Elegant and Modern */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dark);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        /* Hero Section - Stunning */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5ede4 50%, #ede4db 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 30c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-10c16.5 0 30 13.5 30 30s-13.5 30-30 30-30-13.5-30-30 13.5-30 30-30z' fill='%23d4a574' opacity='0.03'/%3E%3C/svg%3E") center/200px 200px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-cross {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            opacity: 0.7;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-elegant);
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .service-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-time {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 94, 74, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 94, 74, 0.4);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: var(--space-3xl) 0;
+            position: relative;
+        }
+        
+        section:nth-child(even) {
+            background: var(--cream);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* About Section - Elegant Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        
+        .about-content h3 {
+            font-family: var(--font-elegant);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .timeline {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .timeline h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-lg);
+            color: var(--primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--border-light);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .timeline-year {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Worship Schedule - Beautiful Cards */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+        
+        .schedule-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .schedule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-dark);
+        }
+        
+        .schedule-card h3 {
+            font-family: var(--font-elegant);
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .schedule-meta {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .schedule-meta li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-light);
+        }
+        
+        .schedule-meta svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+        
+        /* Beliefs - Elegant Accordion */
+        .beliefs-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .belief-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .belief-item:hover {
+            box-shadow: 0 5px 20px var(--shadow-dark);
+        }
+        
+        .belief-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .belief-header:hover {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--accent-gold) 100%);
+        }
+        
+        .belief-icon {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
+        }
+        
+        .belief-title {
+            font-family: var(--font-elegant);
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            flex: 1;
+        }
+        
+        .belief-content {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .belief-content.active {
+            padding: 1.5rem 2rem;
+            max-height: 500px;
+        }
+        
+        /* Leadership - Professional Grid */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .leader-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-dark);
+        }
+        
+        .leader-photo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent-gold);
+        }
+        
+        .leader-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .leader-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .leader-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            padding: 0.625rem 1.5rem;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Gallery - Masonry Style */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: var(--space-2xl);
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px var(--shadow-dark);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item:nth-child(1),
+        .gallery-item:nth-child(4) {
+            grid-row: span 2;
+        }
+        
+        /* Contact Section - Modern */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .contact-info h3 {
+            font-family: var(--font-elegant);
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .contact-item svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+        
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            height: 400px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Footer - Clean and Modern */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: var(--space-2xl) 0 var(--space-lg);
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-cross {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.5;
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 20px var(--shadow);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-grid,
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 200;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header role="banner">
+        <div class="header-container">
+            <a href="#home" class="logo">
+                <svg viewBox="0 0 40 40" fill="currentColor">
+                    <path d="M20 5v30M10 15h20" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                Colonial Hills
+            </a>
+            <nav aria-label="Primary navigation">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12h18M3 6h18M3 18h18"/>
+                    </svg>
+                </button>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#worship">Worship</a></li>
+                    <li><a href="#beliefs">Beliefs</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <svg class="hero-cross" viewBox="0 0 60 60" fill="none">
+                    <path d="M30 10v40M15 25h30" stroke="#7c5e4a" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="30" cy="30" r="28" stroke="#d4a574" stroke-width="1" opacity="0.3"/>
+                </svg>
+                <h1>Colonial Hills Bible Chapel</h1>
+                <p class="hero-subtitle">A Christ-centered community gathering for worship, fellowship, and the study of God's Word</p>
+                <div class="service-card">
+                    <div class="service-label">Next Service</div>
+                    <div class="service-time">Sunday, 9:00 AM</div>
+                    <a href="#worship" class="btn-primary">View Full Schedule</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" aria-labelledby="about-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="about-heading">Welcome & Our History</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h3>Welcome to Our Chapel Family</h3>
+                        <p>Colonial Hills Bible Chapel is a warm, welcoming community of believers united in our love for Jesus Christ. Located on the border of Stafford City, we serve families from surrounding communities with worship services in both English and Malayalam.</p>
+                        <p>As a Bible-believing chapel, we are committed to the faithful teaching and preaching of God's Word. We gather regularly for worship, prayer, fellowship, and the breaking of bread, following the New Testament pattern for the local church.</p>
+                        <p>Our congregation represents diverse backgrounds and cultures, but we are one in Christ. Whether you're a longtime believer or just beginning your spiritual journey, we invite you to join our family as we grow together in faith and service.</p>
+                    </div>
+                    <div class="timeline">
+                        <h3>Our Journey of Faith</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1985</div>
+                            <p>Chapel founded by faithful believers</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1992</div>
+                            <p>First chapel building constructed</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2005</div>
+                            <p>Malayalam ministry begins</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2018</div>
+                            <p>Building expansion completed</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Today</div>
+                            <p>Serving 200+ families in faith</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Worship Schedule -->
+        <section id="worship" aria-labelledby="worship-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="worship-heading">Worship Schedule</h2>
+                </div>
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <h3>Sunday Worship</h3>
+                        <ul class="schedule-meta">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Sunday, 9:00 AM
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7h18M8 11h8M6 15h12M10 19h4"/>
+                                </svg>
+                                English Service
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Main Sanctuary
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-outline">Add to Calendar</a>
+                    </div>
+                    
+                    <div class="schedule-card">
+                        <h3>Malayalam Service</h3>
+                        <ul class="schedule-meta">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Sunday, 11:00 AM
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7h18M8 11h8M6 15h12M10 19h4"/>
+                                </svg>
+                                Malayalam Service
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Main Sanctuary
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-outline">Add to Calendar</a>
+                    </div>
+                    
+                    <div class="schedule-card">
+                        <h3>Friday Prayer</h3>
+                        <ul class="schedule-meta">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Friday, 6:00 AM
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7h18M8 11h8M6 15h12M10 19h4"/>
+                                </svg>
+                                Bilingual
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Prayer Room
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-outline">Add to Calendar</a>
+                    </div>
+                    
+                    <div class="schedule-card">
+                        <h3>Bible Study</h3>
+                        <ul class="schedule-meta">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Saturday, 6:00 PM
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7h18M8 11h8M6 15h12M10 19h4"/>
+                                </svg>
+                                English
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Fellowship Hall
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-outline">Add to Calendar</a>
+                    </div>
+                    
+                    <div class="schedule-card">
+                        <h3>Sunday School</h3>
+                        <ul class="schedule-meta">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                Sunday, 10:15 AM
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7h18M8 11h8M6 15h12M10 19h4"/>
+                                </svg>
+                                All Ages
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Education Wing
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-outline">Join Class</a>
+                    </div>
+                    
+                    <div class="schedule-card">
+                        <h3>Breaking of Bread</h3>
+                        <ul class="schedule-meta">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                First Sunday, 8:00 AM
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 7h18M8 11h8M6 15h12M10 19h4"/>
+                                </svg>
+                                Bilingual
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Main Sanctuary
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Beliefs Section -->
+        <section id="beliefs" aria-labelledby="beliefs-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="beliefs-heading">What We Believe</h2>
+                </div>
+                <div class="beliefs-container">
+                    <div class="belief-item">
+                        <div class="belief-header" onclick="toggleBelief(this)">
+                            <svg class="belief-icon" viewBox="0 0 30 30" fill="currentColor">
+                                <path d="M5 8h20v14H5z M10 4h10v4H10z M12 22v2m6-2v2"/>
+                            </svg>
+                            <span class="belief-title">The Holy Scriptures</span>
+                        </div>
+                        <div class="belief-content">
+                            <p>We believe that the Bible is the inspired, inerrant, and authoritative Word of God. The sixty-six books of the Old and New Testaments are fully inspired by the Holy Spirit and are our final authority in all matters of faith and practice.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="belief-item">
+                        <div class="belief-header" onclick="toggleBelief(this)">
+                            <svg class="belief-icon" viewBox="0 0 30 30" fill="currentColor">
+                                <circle cx="15" cy="10" r="5"/>
+                                <circle cx="10" cy="18" r="5"/>
+                                <circle cx="20" cy="18" r="5"/>
+                            </svg>
+                            <span class="belief-title">The Triune God</span>
+                        </div>
+                        <div class="belief-content">
+                            <p>We believe in one God, eternally existing in three persons: Father, Son, and Holy Spirit. Each person of the Trinity is fully God, co-eternal and co-equal, yet there is one God.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="belief-item">
+                        <div class="belief-header" onclick="toggleBelief(this)">
+                            <svg class="belief-icon" viewBox="0 0 30 30" fill="currentColor">
+                                <path d="M15 5v20M8 12h14"/>
+                            </svg>
+                            <span class="belief-title">The Person and Work of Christ</span>
+                        </div>
+                        <div class="belief-content">
+                            <p>We believe that Jesus Christ is the eternal Son of God who became man without ceasing to be God. He was conceived by the Holy Spirit, born of the virgin Mary, lived a sinless life, died on the cross for our sins, rose bodily from the dead, ascended to heaven, and will return in power and glory.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="belief-item">
+                        <div class="belief-header" onclick="toggleBelief(this)">
+                            <svg class="belief-icon" viewBox="0 0 30 30" fill="currentColor">
+                                <path d="M15 5c-3 0-5 2-5 5 0 5 5 10 5 15 0-5 5-10 5-15 0-3-2-5-5-5z"/>
+                            </svg>
+                            <span class="belief-title">The Holy Spirit</span>
+                        </div>
+                        <div class="belief-content">
+                            <p>We believe that the Holy Spirit is a divine person who convicts the world of sin, righteousness, and judgment. He indwells, seals, and empowers all believers, distributing spiritual gifts for the edification of the church and the glory of God.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="belief-item">
+                        <div class="belief-header" onclick="toggleBelief(this)">
+                            <svg class="belief-icon" viewBox="0 0 30 30" fill="currentColor">
+                                <path d="M15 5l3 10h10l-8 6 3 10-8-6-8 6 3-10-8-6h10z"/>
+                            </svg>
+                            <span class="belief-title">Salvation by Grace</span>
+                        </div>
+                        <div class="belief-content">
+                            <p>We believe that salvation is by grace alone through faith alone in Christ alone. It is a free gift of God, not based on human works or merit. All who truly believe in Jesus Christ are eternally secure in Him.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="belief-item">
+                        <div class="belief-header" onclick="toggleBelief(this)">
+                            <svg class="belief-icon" viewBox="0 0 30 30" fill="currentColor">
+                                <rect x="5" y="10" width="20" height="15" rx="2"/>
+                                <path d="M10 10v-2a5 5 0 0110 0v2"/>
+                            </svg>
+                            <span class="belief-title">The Church</span>
+                        </div>
+                        <div class="belief-content">
+                            <p>We believe that the church is the body of Christ, composed of all true believers. The local church is an autonomous gathering of believers who meet for worship, fellowship, teaching, prayer, and the observance of baptism and the Lord's Supper.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Leadership Section -->
+        <section id="leadership" aria-labelledby="leadership-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="leadership-heading">Our Leadership</h2>
+                </div>
+                <div class="leadership-grid">
+                    <div class="leader-card">
+                        <div class="leader-photo">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Cdefs%3E%3ClinearGradient id='a'%3E%3Cstop offset='0%25' stop-color='%23f5ede4'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='150' height='150' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='60' fill='%237c5e4a' opacity='0.3'%3EJS%3C/text%3E%3C/svg%3E" alt="John Smith">
+                        </div>
+                        <h3 class="leader-name">John Smith</h3>
+                        <p class="leader-role">Senior Elder</p>
+                        <button class="btn-outline" onclick="openModal('john')">View Bio</button>
+                    </div>
+                    
+                    <div class="leader-card">
+                        <div class="leader-photo">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Cdefs%3E%3ClinearGradient id='a'%3E%3Cstop offset='0%25' stop-color='%23f5ede4'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='150' height='150' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='60' fill='%237c5e4a' opacity='0.3'%3EDJ%3C/text%3E%3C/svg%3E" alt="David Johnson">
+                        </div>
+                        <h3 class="leader-name">David Johnson</h3>
+                        <p class="leader-role">Elder</p>
+                        <button class="btn-outline" onclick="openModal('david')">View Bio</button>
+                    </div>
+                    
+                    <div class="leader-card">
+                        <div class="leader-photo">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Cdefs%3E%3ClinearGradient id='a'%3E%3Cstop offset='0%25' stop-color='%23f5ede4'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='150' height='150' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='60' fill='%237c5e4a' opacity='0.3'%3ETG%3C/text%3E%3C/svg%3E" alt="Thomas George">
+                        </div>
+                        <h3 class="leader-name">Thomas George</h3>
+                        <p class="leader-role">Elder</p>
+                        <button class="btn-outline" onclick="openModal('thomas')">View Bio</button>
+                    </div>
+                    
+                    <div class="leader-card">
+                        <div class="leader-photo">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Cdefs%3E%3ClinearGradient id='a'%3E%3Cstop offset='0%25' stop-color='%23f5ede4'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='150' height='150' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='60' fill='%237c5e4a' opacity='0.3'%3EMB%3C/text%3E%3C/svg%3E" alt="Michael Brown">
+                        </div>
+                        <h3 class="leader-name">Michael Brown</h3>
+                        <p class="leader-role">Deacon</p>
+                        <button class="btn-outline" onclick="openModal('michael')">View Bio</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" aria-labelledby="gallery-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="gallery-heading">Our Chapel Life</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23faf8f3'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='600' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='24' fill='%237c5e4a' opacity='0.5'%3EChapel Exterior%3C/text%3E%3C/svg%3E" alt="Chapel exterior view">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f5ede4'/%3E%3Cstop offset='100%25' stop-color='%23d4a574'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='20' fill='%237c5e4a' opacity='0.5'%3ESanctuary%3C/text%3E%3C/svg%3E" alt="Main sanctuary">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ede4db'/%3E%3Cstop offset='100%25' stop-color='%23d4a574'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='20' fill='%237c5e4a' opacity='0.5'%3EWorship Service%3C/text%3E%3C/svg%3E" alt="Worship service">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23faf8f3'/%3E%3Cstop offset='100%25' stop-color='%23d4a574'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='600' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='24' fill='%237c5e4a' opacity='0.5'%3EFellowship Hall%3C/text%3E%3C/svg%3E" alt="Fellowship hall">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f5ede4'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='20' fill='%237c5e4a' opacity='0.5'%3ESunday School%3C/text%3E%3C/svg%3E" alt="Sunday School">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ede4db'/%3E%3Cstop offset='100%25' stop-color='%23e8c5a0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='serif' font-size='20' fill='%237c5e4a' opacity='0.5'%3EPrayer Meeting%3C/text%3E%3C/svg%3E" alt="Prayer meeting">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" aria-labelledby="contact-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="contact-heading">Visit Us</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <strong>Address</strong><br>
+                                123 Colonial Hills Road<br>
+                                Stafford City, State 12345<br>
+                                <em>Border of Stafford City</em>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <div>
+                                <strong>Phone</strong><br>
+                                <a href="tel:+1234567890">(123) 456-7890</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="m22 7-10 5L2 7"/>
+                            </svg>
+                            <div>
+                                <strong>Email</strong><br>
+                                <a href="mailto:info@colonialhillschapel.org">info@colonialhillschapel.org</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                            <div>
+                                <strong>Service Times</strong><br>
+                                Sunday: 9:00 AM (English)<br>
+                                Sunday: 11:00 AM (Malayalam)<br>
+                                See full schedule above
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <p style="color: var(--text-light);">Interactive map will be displayed here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <svg class="footer-cross" viewBox="0 0 40 40" fill="white" opacity="0.5">
+                <path d="M20 10v20M10 20h20" stroke="white" stroke-width="2"/>
+            </svg>
+            <p>&copy; 2024 Colonial Hills Bible Chapel</p>
+            <p>A Christ-centered community in Stafford City</p>
+        </div>
+    </footer>
+    
+    <!-- Modal for Leader Bios -->
+    <div id="bioModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle">Leader Name</h3>
+            <div id="modalContent">
+                <p>Bio content will appear here.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('nav ul');
+        
+        menuToggle?.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Active Navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Beliefs Accordion
+        function toggleBelief(header) {
+            const content = header.nextElementSibling;
+            const allContents = document.querySelectorAll('.belief-content');
+            
+            allContents.forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            content.classList.toggle('active');
+        }
+        
+        // Modal Functions
+        const modal = document.getElementById('bioModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        
+        const bios = {
+            john: {
+                name: 'John Smith - Senior Elder',
+                content: '<p>John has served as an elder at Colonial Hills Bible Chapel for over 20 years. His heart for expository preaching and Biblical teaching has been instrumental in establishing our systematic Bible study programs.</p><p>John and his wife Mary have been married for 35 years and have three adult children, all actively serving the Lord in various ministries.</p>'
+            },
+            david: {
+                name: 'David Johnson - Elder',
+                content: '<p>David brings 15 years of pastoral experience to our elder team. His passion for discipleship and mentoring has helped many young believers grow in their faith.</p><p>David and his wife Sarah coordinate our youth ministry and lead marriage enrichment seminars.</p>'
+            },
+            thomas: {
+                name: 'Thomas George - Elder',
+                content: '<p>Thomas oversees our Malayalam ministry and has been instrumental in bridging our multi-cultural congregation. His gift of teaching in both languages has blessed many families.</p><p>Thomas and his wife Mercy have served in missions for 10 years before joining our chapel leadership.</p>'
+            },
+            michael: {
+                name: 'Michael Brown - Deacon',
+                content: '<p>Michael serves as our deacon, overseeing the practical needs of our congregation. His servant heart and administrative gifts keep our chapel running smoothly.</p><p>Michael and his wife Jennifer coordinate our benevolence ministry and community outreach programs.</p>'
+            }
+        };
+        
+        function openModal(person) {
+            const bio = bios[person];
+            modalTitle.textContent = bio.name;
+            modalContent.innerHTML = bio.content;
+            modal.classList.add('active');
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+        
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // Update Next Service Time
+        function updateNextService() {
+            const now = new Date();
+            const services = [
+                { day: 0, hour: 9, minute: 0, name: 'Sunday Worship' },
+                { day: 0, hour: 11, minute: 0, name: 'Malayalam Service' },
+                { day: 5, hour: 6, minute: 0, name: 'Friday Prayer' },
+                { day: 6, hour: 18, minute: 0, name: 'Bible Study' }
+            ];
+            
+            let nextService = null;
+            let minTime = Infinity;
+            
+            services.forEach(service => {
+                const serviceDate = new Date();
+                const daysUntil = (service.day - now.getDay() + 7) % 7 || 7;
+                serviceDate.setDate(now.getDate() + daysUntil);
+                serviceDate.setHours(service.hour, service.minute, 0, 0);
+                
+                if (serviceDate > now && serviceDate < minTime) {
+                    minTime = serviceDate;
+                    nextService = { ...service, date: serviceDate };
+                }
+            });
+            
+            if (nextService) {
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const timeString = nextService.date.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                });
+                
+                const serviceTimeElement = document.querySelector('.service-time');
+                if (serviceTimeElement) {
+                    serviceTimeElement.textContent = `${days[nextService.day]}, ${timeString}`;
+                }
+            }
+        }
+        
+        // Initialize
+        updateNextService();
+        setInterval(updateNextService, 60000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel | A Sacred Place of Worship and Fellowship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sacred-navy: #1a2332;
+            --deep-navy: #0f1419;
+            --royal-navy: #2c3e50;
+            --sacred-gold: #b8860b;
+            --warm-gold: #daa520;
+            --light-gold: #f4e4bc;
+            --pure-white: #ffffff;
+            --ivory: #fdfdf7;
+            --warm-white: #fefefe;
+            --charcoal: #2c2c2c;
+            --deep-charcoal: #1a1a1a;
+            --gray-text: #4a4a4a;
+            --light-gray: #f8f8f8;
+            --border-elegant: #e0e0e0;
+            --shadow-reverent: rgba(26, 35, 50, 0.12);
+            --shadow-deep: rgba(26, 35, 50, 0.25);
+            --shadow-sacred: rgba(26, 35, 50, 0.08);
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--charcoal);
+            background: var(--pure-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        /* Sacred Navigation */
+        .sacred-navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-elegant);
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .sacred-navigation.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 25px var(--shadow-sacred);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            height: 90px;
+        }
+
+        .sacred-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+        }
+
+        .logo-emblem {
+            width: 50px;
+            height: 50px;
+            background: var(--sacred-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px var(--shadow-reverent);
+        }
+
+        .logo-emblem::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--sacred-gold);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .logo-emblem::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--sacred-gold);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .logo-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--sacred-navy);
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 45px;
+        }
+
+        .nav-link {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--sacred-gold);
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--sacred-navy);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--sacred-navy);
+            color: var(--pure-white);
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px var(--shadow-reverent);
+        }
+
+        .nav-cta:hover {
+            background: var(--deep-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-deep);
+        }
+
+        /* Sacred Hero Section */
+        .sacred-hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--sacred-navy) 0%, var(--deep-navy) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: var(--pure-white);
+            text-align: center;
+        }
+
+        .sacred-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="sacred" patternUnits="userSpaceOnUse" width="50" height="50"><circle cx="25" cy="25" r="1" fill="%23b8860b" opacity="0.15"/><circle cx="25" cy="25" r="15" fill="none" stroke="%23b8860b" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23sacred)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sacred-badge {
+            display: inline-block;
+            border: 2px solid var(--sacred-gold);
+            color: var(--sacred-gold);
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            background: rgba(184, 134, 11, 0.1);
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .sacred-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(48px, 6vw, 84px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--pure-white);
+            letter-spacing: -1px;
+        }
+
+        .sacred-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 35px;
+            line-height: 1.4;
+        }
+
+        .sacred-verse {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--sacred-gold);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .verse-reference {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 50px;
+        }
+
+        .sacred-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .sacred-actions {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.4s ease;
+            display: inline-block;
+            min-width: 180px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-sacred {
+            background: var(--sacred-gold);
+            color: var(--deep-navy);
+            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-sacred:hover {
+            background: var(--warm-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(184, 134, 11, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pure-white);
+            border: 2px solid var(--pure-white);
+        }
+
+        .btn-outline:hover {
+            background: var(--pure-white);
+            color: var(--sacred-navy);
+            transform: translateY(-3px);
+        }
+
+        /* Sacred Story Section */
+        .sacred-story {
+            padding: 120px 0;
+            background: var(--ivory);
+        }
+
+        .story-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .sacred-section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sacred-gold);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--sacred-navy);
+            line-height: 1.2;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-text);
+            margin-bottom: 30px;
+        }
+
+        .sacred-emphasis {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--royal-navy);
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--pure-white);
+            border-left: 4px solid var(--sacred-gold);
+            box-shadow: 0 4px 20px var(--shadow-sacred);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .sacred-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--pure-white);
+            border-radius: 8px;
+            box-shadow: 0 8px 30px var(--shadow-sacred);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-reverent);
+        }
+
+        .stat-number {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--sacred-navy);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .sacred-visual {
+            background: var(--sacred-navy);
+            height: 600px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px var(--shadow-deep);
+        }
+
+        .sacred-visual::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 3px solid var(--sacred-gold);
+            border-radius: 4px;
+            opacity: 0.7;
+        }
+
+        .sacred-visual::after {
+            content: 'In His Name We Gather';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Libre Baskerville', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--sacred-gold);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* Sacred Worship Section */
+        .sacred-worship {
+            padding: 120px 0;
+            background: var(--pure-white);
+        }
+
+        .worship-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .worship-header {
+            text-align: center;
+            margin-bottom: 100px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .worship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .worship-card {
+            background: var(--pure-white);
+            border: 2px solid var(--border-elegant);
+            padding: 50px 40px;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .worship-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--sacred-navy) 0%, var(--royal-navy) 100%);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .worship-card:hover {
+            border-color: var(--sacred-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-reverent);
+            color: var(--pure-white);
+        }
+
+        .worship-card:hover::before {
+            left: 0;
+        }
+
+        .worship-number {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 72px;
+            font-weight: 300;
+            color: rgba(184, 134, 11, 0.2);
+            margin-bottom: 30px;
+            line-height: 1;
+            transition: color 0.4s ease;
+        }
+
+        .worship-card:hover .worship-number {
+            color: rgba(184, 134, 11, 0.3);
+        }
+
+        .worship-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--sacred-navy);
+            transition: color 0.4s ease;
+        }
+
+        .worship-card:hover .worship-name {
+            color: var(--pure-white);
+        }
+
+        .worship-time {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sacred-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .worship-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-text);
+            transition: color 0.4s ease;
+        }
+
+        .worship-card:hover .worship-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Sacred Ministries Section */
+        .sacred-ministries {
+            padding: 120px 0;
+            background: var(--light-gray);
+        }
+
+        .ministries-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .ministries-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .ministries-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .ministry-card {
+            background: var(--pure-white);
+            padding: 50px 40px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 8px 30px var(--shadow-sacred);
+        }
+
+        .ministry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--sacred-gold);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .ministry-card:hover {
+            border-color: var(--sacred-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-reverent);
+        }
+
+        .ministry-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ministry-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--sacred-navy);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .ministry-icon::after {
+            content: '';
+            width: 35px;
+            height: 35px;
+            background: var(--sacred-gold);
+            border-radius: 4px;
+            transition: all 0.4s ease;
+        }
+
+        .ministry-card:hover .ministry-icon {
+            transform: scale(1.1);
+        }
+
+        .ministry-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--sacred-navy);
+            margin-bottom: 20px;
+        }
+
+        .ministry-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-text);
+        }
+
+        /* Sacred Leadership Section */
+        .sacred-leadership {
+            padding: 120px 0;
+            background: var(--pure-white);
+        }
+
+        .leadership-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .leadership-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .leader-card {
+            text-align: center;
+            background: var(--pure-white);
+            border: 2px solid var(--border-elegant);
+            border-radius: 8px;
+            padding: 50px 40px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px var(--shadow-sacred);
+        }
+
+        .leader-card:hover {
+            border-color: var(--sacred-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow-reverent);
+        }
+
+        .leader-photo {
+            width: 180px;
+            height: 180px;
+            background: var(--sacred-navy);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            position: relative;
+            box-shadow: 0 8px 25px var(--shadow-reverent);
+        }
+
+        .leader-photo::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 3px solid var(--sacred-gold);
+            border-radius: 50%;
+        }
+
+        .leader-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--sacred-navy);
+            margin-bottom: 10px;
+        }
+
+        .leader-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sacred-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .leader-bio {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-text);
+        }
+
+        /* Sacred Contact Section */
+        .sacred-contact {
+            padding: 120px 0;
+            background: var(--sacred-navy);
+            color: var(--pure-white);
+            position: relative;
+        }
+
+        .sacred-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="contact" patternUnits="userSpaceOnUse" width="60" height="60"><circle cx="30" cy="30" r="2" fill="%23b8860b" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23contact)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 100px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-content h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--pure-white);
+        }
+
+        .contact-details {
+            margin-bottom: 50px;
+        }
+
+        .contact-item {
+            margin-bottom: 35px;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sacred-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .contact-visual {
+            background: var(--ivory);
+            height: 500px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px var(--shadow-deep);
+        }
+
+        .contact-visual::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 3px solid var(--sacred-gold);
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+
+        .location-info {
+            text-align: center;
+            color: var(--sacred-navy);
+            position: relative;
+            z-index: 2;
+        }
+
+        .location-info h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .location-info p {
+            font-size: 16px;
+            color: var(--gray-text);
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        /* Sacred Footer */
+        .sacred-footer {
+            background: var(--deep-charcoal);
+            color: var(--pure-white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--sacred-gold);
+        }
+
+        .footer-brand p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--sacred-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--sacred-navy);
+            margin: 6px 0;
+            transition: 0.3s;
+            border-radius: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .story-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .worship-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+
+            .ministries-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--pure-white);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 8px 30px var(--shadow-reverent);
+                border-radius: 0 0 8px 8px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 0 30px;
+                height: 80px;
+            }
+
+            .hero-container,
+            .story-container,
+            .worship-container,
+            .ministries-container,
+            .leadership-container,
+            .contact-container,
+            .footer-container {
+                padding: 0 30px;
+            }
+
+            .sacred-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .worship-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ministries-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .sacred-title {
+                font-size: 42px;
+            }
+
+            .sacred-stats {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .hero-container,
+            .story-container,
+            .worship-container,
+            .ministries-container,
+            .leadership-container,
+            .contact-container,
+            .footer-container {
+                padding: 0 20px;
+            }
+
+            .sacred-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .worship-number {
+                font-size: 48px;
+            }
+        }
+
+        /* Sacred Animations */
+        @keyframes sacred-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: sacred-fade-in 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sacred Navigation -->
+    <nav class="sacred-navigation" id="navigation">
+        <div class="nav-container">
+            <a href="#home" class="sacred-logo">
+                <div class="logo-emblem"></div>
+                <div class="logo-text">Stafford Bible Chapel</div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#story" class="nav-link">Our Story</a></li>
+                <li><a href="#worship" class="nav-link">Worship</a></li>
+                <li><a href="#ministries" class="nav-link">Ministries</a></li>
+                <li><a href="#leadership" class="nav-link">Leadership</a></li>
+                <li><a href="#contact" class="nav-link">Visit</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Join Us</a>
+            <button class="mobile-menu-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sacred Hero Section -->
+    <section class="sacred-hero" id="home">
+        <div class="hero-container">
+            <div class="sacred-badge">Indian Brethren Church</div>
+            <h1 class="sacred-title">A Sacred Place of Worship and Fellowship</h1>
+            <p class="sacred-subtitle">Stafford Bible Chapel</p>
+            <p class="sacred-verse">"For where two or three gather in my name, there am I with them."</p>
+            <p class="verse-reference">— Matthew 18:20</p>
+            <p class="sacred-description">
+                Welcome to our sacred fellowship, where the Malayalam community of Houston gathers to worship, 
+                grow in faith, and serve our Lord Jesus Christ. Since 2014, we have been a beacon of hope 
+                and spiritual nourishment for families seeking authentic biblical teaching and genuine Christian fellowship.
+            </p>
+            <div class="sacred-actions">
+                <a href="#contact" class="btn btn-sacred">Plan Your Visit</a>
+                <a href="#story" class="btn btn-outline">Our Sacred Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacred Story Section -->
+    <section class="sacred-story" id="story">
+        <div class="story-container">
+            <div class="story-content">
+                <div class="sacred-section-header">
+                    <div class="section-label">Our Sacred Foundation</div>
+                    <h2 class="section-title">Built Upon the Rock of Ages</h2>
+                </div>
+                <p class="section-text">
+                    In November 2014, by God's divine providence, Dr. Mathew Vairamon was called to establish 
+                    Stafford Bible Chapel. What began as a single family's faithful commitment to worship has 
+                    grown into a thriving spiritual community of over 200 families.
+                </p>
+                <p class="section-text">
+                    From our humble beginnings in a home on Murphy Road to our current sanctuary at 
+                    10502 Altonbury Lane, we have witnessed the Lord's faithfulness in every season. 
+                    Our church stands as a testament to His grace and provision.
+                </p>
+                <div class="sacred-emphasis">
+                    "Unless the Lord builds the house, the builders labor in vain." — Psalm 127:1
+                </div>
+                <p class="section-text">
+                    Located at the heart of Stafford City, we joyfully serve the Malayalam community 
+                    throughout Houston, Sugar Land, Missouri City, Pearland, and the greater metropolitan area. 
+                    Our doors are open to all who seek to know Christ and grow in His love.
+                </p>
+                <div class="sacred-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years of Faithful Ministry</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Families in Fellowship</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Weekly Gatherings</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sacred-visual"></div>
+        </div>
+    </section>
+
+    <!-- Sacred Worship Section -->
+    <section class="sacred-worship" id="worship">
+        <div class="worship-container">
+            <div class="worship-header">
+                <div class="section-label">Come and Worship</div>
+                <h2 class="section-title">Sacred Gatherings and Services</h2>
+                <p class="section-text">
+                    Join us as we gather to worship our Lord and Savior Jesus Christ through prayer, 
+                    praise, and the faithful teaching of His Holy Word.
+                </p>
+            </div>
+            <div class="worship-grid">
+                <div class="worship-card">
+                    <div class="worship-number">01</div>
+                    <h3 class="worship-name">Sunday Worship</h3>
+                    <div class="worship-time">9:00 AM</div>
+                    <p class="worship-description">
+                        Our cornerstone service of worship, featuring congregational singing, heartfelt prayer, 
+                        and expository preaching from God's Word in English and Malayalam.
+                    </p>
+                </div>
+                <div class="worship-card">
+                    <div class="worship-number">02</div>
+                    <h3 class="worship-name">Bible Study</h3>
+                    <div class="worship-time">Saturday 7:00 PM</div>
+                    <p class="worship-description">
+                        Systematic study of Scripture with opportunity for discussion, questions, 
+                        and deeper understanding of God's eternal truths.
+                    </p>
+                </div>
+                <div class="worship-card">
+                    <div class="worship-number">03</div>
+                    <h3 class="worship-name">Prayer Meeting</h3>
+                    <div class="worship-time">Saturday 7:00 PM</div>
+                    <p class="worship-description">
+                        United in prayer for our church family, local community, global missions, 
+                        and seeking God's will and guidance in all things.
+                    </p>
+                </div>
+                <div class="worship-card">
+                    <div class="worship-number">04</div>
+                    <h3 class="worship-name">Sunday School</h3>
+                    <div class="worship-time">After Morning Service</div>
+                    <p class="worship-description">
+                        Biblical education for all ages, building strong foundations in faith 
+                        and Christian living for our children and youth.
+                    </p>
+                </div>
+                <div class="worship-card">
+                    <div class="worship-number">05</div>
+                    <h3 class="worship-name">Women's Fellowship</h3>
+                    <div class="worship-time">Friday Morning</div>
+                    <p class="worship-description">
+                        A sacred time for Christian women to fellowship, study God's Word, 
+                        and encourage one another in faith and service.
+                    </p>
+                </div>
+                <div class="worship-card">
+                    <div class="worship-number">06</div>
+                    <h3 class="worship-name">Special Events</h3>
+                    <div class="worship-time">Throughout the Year</div>
+                    <p class="worship-description">
+                        Seasonal celebrations, spiritual retreats, evangelistic meetings, 
+                        and community outreach programs that enrich our spiritual journey.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacred Ministries Section -->
+    <section class="sacred-ministries" id="ministries">
+        <div class="ministries-container">
+            <div class="ministries-header">
+                <div class="section-label">Serve the Lord</div>
+                <h2 class="section-title">Sacred Ministries and Service</h2>
+            </div>
+            <div class="ministries-grid">
+                <div class="ministry-card">
+                    <div class="ministry-icon"></div>
+                    <h3 class="ministry-name">Children's Ministry</h3>
+                    <p class="ministry-description">
+                        Building strong biblical foundations in our precious children through 
+                        age-appropriate teaching, activities, and nurturing Christian fellowship.
+                    </p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon"></div>
+                    <h3 class="ministry-name">Youth Ministry</h3>
+                    <p class="ministry-description">
+                        Equipping young people to live boldly for Christ, providing spiritual 
+                        guidance and fellowship in today's challenging world.
+                    </p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon"></div>
+                    <h3 class="ministry-name">Worship Ministry</h3>
+                    <p class="ministry-description">
+                        Leading our congregation in heartfelt worship and praise, glorifying 
+                        our Lord through music, song, and reverent service.
+                    </p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon"></div>
+                    <h3 class="ministry-name">Community Outreach</h3>
+                    <p class="ministry-description">
+                        Sharing Christ's love through practical service, evangelism, and 
+                        compassionate care for our Malayalam community and beyond.
+                    </p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon"></div>
+                    <h3 class="ministry-name">Biblical Education</h3>
+                    <p class="ministry-description">
+                        Deepening understanding of God's Word through systematic teaching, 
+                        theological study, and spiritual formation programs.
+                    </p>
+                </div>
+                <div class="ministry-card">
+                    <div class="ministry-icon"></div>
+                    <h3 class="ministry-name">Prayer Ministry</h3>
+                    <p class="ministry-description">
+                        Faithful intercessors standing in the gap, praying for church needs, 
+                        missions, and the spiritual welfare of our community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacred Leadership Section -->
+    <section class="sacred-leadership" id="leadership">
+        <div class="leadership-container">
+            <div class="leadership-header">
+                <div class="section-label">Spiritual Shepherds</div>
+                <h2 class="section-title">Called to Lead and Serve</h2>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="leader-photo"></div>
+                    <h3 class="leader-name">Dr. Mathew Vairamon</h3>
+                    <p class="leader-title">Founding Pastor</p>
+                    <p class="leader-bio">
+                        By God's calling and grace, Dr. Vairamon has faithfully shepherded Stafford Bible Chapel 
+                        since its founding in 2014, leading our congregation with biblical wisdom and pastoral care.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo"></div>
+                    <h3 class="leader-name">Board of Elders</h3>
+                    <p class="leader-title">Spiritual Oversight</p>
+                    <p class="leader-bio">
+                        Godly men called to provide spiritual oversight, biblical guidance, and pastoral care 
+                        to our congregation with hearts devoted to serving Christ and His people.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo"></div>
+                    <h3 class="leader-name">Ministry Leaders</h3>
+                    <p class="leader-title">Faithful Servants</p>
+                    <p class="leader-bio">
+                        Dedicated believers leading various ministries with passion and commitment, 
+                        including worship, children's programs, youth outreach, and community service.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacred Contact Section -->
+    <section class="sacred-contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-content">
+                <h2>Come and Worship With Us</h2>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4>Sacred Address</h4>
+                        <p>10502 Altonbury Lane<br>Houston, Texas 77031</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Contact Number</h4>
+                        <p>281-857-7538</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Church Website</h4>
+                        <p>www.staffordbiblechapel.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Worship Schedule</h4>
+                        <p>Sunday Worship: 9:00 AM<br>Saturday Prayer & Study: 7:00 PM</p>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-sacred">Get Directions</a>
+            </div>
+            <div class="contact-visual">
+                <div class="location-info">
+                    <h3>Our Sacred Sanctuary</h3>
+                    <p>
+                        Located in the heart of Stafford City, our church welcomes families from throughout 
+                        the Houston metropolitan area including Sugar Land, Missouri City, and Pearland.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacred Footer -->
+    <footer class="sacred-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Stafford Bible Chapel</h3>
+                    <p>
+                        A sacred fellowship of believers serving the Malayalam community in Houston since 2014. 
+                        Join us for worship, prayer, and spiritual growth as we glorify our Lord and Savior Jesus Christ.
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4>Sacred Links</h4>
+                    <ul>
+                        <li><a href="#story">Our Sacred Story</a></li>
+                        <li><a href="#worship">Worship Services</a></li>
+                        <li><a href="#ministries">Sacred Ministries</a></li>
+                        <li><a href="#leadership">Spiritual Leadership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Worship Times</h4>
+                    <ul>
+                        <li><a href="#worship">Sunday - 9:00 AM</a></li>
+                        <li><a href="#worship">Saturday - 7:00 PM</a></li>
+                        <li><a href="#worship">Friday Fellowship</a></li>
+                        <li><a href="#worship">Sunday School</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="#contact">Visit Our Sanctuary</a></li>
+                        <li><a href="tel:281-857-7538">Call Our Church</a></li>
+                        <li><a href="#contact">Get Directions</a></li>
+                        <li><a href="#contact">Prayer Requests</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stafford Bible Chapel - Indian Brethren Church. To God be the Glory.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sacred Navigation Effects
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navigation');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        });
+
+        // Sacred Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // Sacred Intersection Observer
+        const sacredObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe sacred elements
+        document.querySelectorAll('.worship-card, .ministry-card, .leader-card, .stat-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+            sacredObserver.observe(el);
+        });
+
+        // Sacred Loading
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.6s ease';
+        });
+
+        // Enhanced hover effects for worship cards
+        document.querySelectorAll('.worship-card, .ministry-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

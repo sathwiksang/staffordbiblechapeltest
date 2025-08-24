@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel | Indian Brethren Church</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700;6..96,800&family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #d4a574;
+            --accent: #8b6f47;
+            --light: #fefefe;
+            --dark: #1a1a1a;
+            --gray-light: #f8f7f5;
+            --gray-medium: #e8e6e1;
+            --text-primary: #2c2c2c;
+            --text-secondary: #5a5a5a;
+            --gradient-1: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            --gradient-2: linear-gradient(135deg, #d4a574 0%, #e6c9a8 100%);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-primary);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.1s ease;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 9998;
+        }
+
+        /* Navigation - Unique Side Layout */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 40px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-wrapper.scrolled {
+            background: rgba(254, 254, 254, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-mark {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        .logo-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            transform: rotate(45deg);
+            transition: transform 0.4s ease;
+        }
+
+        .logo-inner {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            background: var(--secondary);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo-section:hover .logo-shape {
+            transform: rotate(135deg);
+        }
+
+        .logo-text {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 45px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 12px 32px;
+            background: var(--gradient-1);
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary);
+            transition: left 0.3s ease;
+        }
+
+        .nav-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-cta:hover::before {
+            left: 0;
+        }
+
+        /* Hero Section - Asymmetric Design */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(48px, 6vw, 84px);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero-title span {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-title .word {
+            display: inline-block;
+            transform: translateY(100%);
+            animation: revealWord 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .hero-title .word:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .hero-title .word:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes revealWord {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInSlide 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: fadeInSlide 1s ease 0.7s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--secondary);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .btn-primary:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        /* Hero Visual - Geometric Pattern */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+        }
+
+        .geometric-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .geo-shape {
+            background: var(--gray-light);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .geo-shape:nth-child(1) {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+            background: var(--gradient-1);
+            animation-delay: 0.1s;
+        }
+
+        .geo-shape:nth-child(2) {
+            grid-column: 3 / 4;
+            grid-row: 1 / 3;
+            background: var(--gray-medium);
+            animation-delay: 0.2s;
+        }
+
+        .geo-shape:nth-child(3) {
+            grid-column: 1 / 2;
+            grid-row: 2 / 4;
+            background: var(--gradient-2);
+            animation-delay: 0.3s;
+        }
+
+        .geo-shape:nth-child(4) {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            background: var(--gray-light);
+            animation-delay: 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .geo-shape:nth-child(5) {
+            grid-column: 2 / 4;
+            grid-row: 3 / 4;
+            background: var(--primary);
+            animation-delay: 0.5s;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* About Section - Split Screen Design */
+        .about {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .about-left {
+            background: var(--gray-light);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-right {
+            background: var(--gradient-1);
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-right::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-right .about-title {
+            color: var(--light);
+        }
+
+        .about-right .about-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Services - Card Stack Design */
+        .services {
+            padding: 120px 0;
+            background: var(--light);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .services-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--light);
+            border: 1px solid var(--gray-medium);
+            padding: 50px 40px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: transparent;
+            color: var(--light);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-number {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+            transition: color 0.4s ease;
+        }
+
+        .service-card:hover .service-number {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: color 0.4s ease;
+        }
+
+        .service-card:hover .service-name {
+            color: var(--light);
+        }
+
+        .service-time {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-card:hover .service-time {
+            color: var(--secondary);
+        }
+
+        .service-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            transition: color 0.4s ease;
+        }
+
+        .service-card:hover .service-desc {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Ministries - Diagonal Layout */
+        .ministries {
+            padding: 120px 0;
+            background: var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ministries::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 48%, var(--light) 48%, var(--light) 52%, transparent 52%);
+            z-index: 1;
+        }
+
+        .ministries-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ministries-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .ministries-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .ministries-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .ministry-item {
+            background: var(--light);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .ministry-item:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .ministry-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .icon-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--secondary);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .ministry-item:hover .icon-shape {
+            transform: rotate(45deg) scale(1.1);
+            background: var(--gradient-2);
+        }
+
+        .ministry-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .ministry-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Leadership Section */
+        .leadership {
+            padding: 120px 0;
+            background: var(--light);
+        }
+
+        .leadership-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .leadership-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .leadership-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .leader-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .leader-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-1);
+        }
+
+        .leader-image::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid var(--secondary);
+            z-index: 1;
+        }
+
+        .leader-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .leader-role {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .leader-bio {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section - Split Design */
+        .contact {
+            padding: 120px 0;
+            background: var(--gray-light);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            padding: 80px;
+            color: var(--light);
+        }
+
+        .contact-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            margin-bottom: 40px;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-value {
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-map {
+            background: var(--gray-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background: var(--light);
+            padding: 30px;
+            max-width: 300px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .map-address {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 80px 0 40px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 10px;
+            background: none;
+            border: none;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .geometric-grid {
+                height: 400px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .ministries-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--light);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ministries-list {
+                grid-template-columns: 1fr;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-left,
+            .about-right,
+            .contact-info {
+                padding: 40px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .services-title,
+            .ministries-title,
+            .leadership-title {
+                font-size: 36px;
+            }
+
+            .about-title,
+            .contact-title {
+                font-size: 32px;
+            }
+
+            .service-number {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-wrapper" id="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo-mark">
+                    <div class="logo-shape"></div>
+                    <div class="logo-inner"></div>
+                </div>
+                <div class="logo-text">Stafford Bible Chapel</div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#ministries" class="nav-link">Ministries</a></li>
+                <li><a href="#leadership" class="nav-link">Leadership</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta"><span>Visit Us</span></a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Indian Brethren Church</div>
+                <h1 class="hero-title">
+                    <span><span class="word">Stafford</span></span>
+                    <span><span class="word">Bible</span></span>
+                    <span><span class="word">Chapel</span></span>
+                </h1>
+                <p class="hero-subtitle">Serving Houston's Malayalam Community Since 2014</p>
+                <p class="hero-description">
+                    Join us every Sunday at 9:00 AM for worship in English and Malayalam. 
+                    Experience faith, fellowship, and spiritual growth in a welcoming community.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary"><span>Plan Your Visit</span></a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="geometric-grid">
+                    <div class="geo-shape"></div>
+                    <div class="geo-shape"></div>
+                    <div class="geo-shape"></div>
+                    <div class="geo-shape">SBC</div>
+                    <div class="geo-shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-left">
+                <div class="section-label">Our Story</div>
+                <h2 class="about-title">Founded in Faith, Growing in Grace</h2>
+                <p class="about-text">
+                    Stafford Bible Chapel was founded in November 2014 by Dr. Mathew Vairamon, 
+                    beginning with just one family gathering in his home. Through God's blessing, 
+                    our congregation has grown and moved from Murphy Road to our current location 
+                    at 10502 Altonbury Lane, Houston, TX 77031.
+                </p>
+                <p class="about-text">
+                    Situated at the border of Stafford City, we serve the vibrant Malayalam community 
+                    in Houston. Stafford is surrounded by Sugar Land, Missouri City, Rosenberg, Richmond, 
+                    Pearland, and Houston, making it the heart of Malayalam culture in the area.
+                </p>
+            </div>
+            <div class="about-right">
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Serving</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Families</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Weekly Services</div>
+                    </div>
+                </div>
+                <div style="margin-top: 50px;">
+                    <h3 style="font-family: 'Bodoni Moda', serif; font-size: 32px; color: white; margin-bottom: 20px;">
+                        A Community United in Christ
+                    </h3>
+                    <p class="about-text">
+                        We are a community where Malayalam and English languages unite us in worship. 
+                        Our church stands as a beacon of faith, surrounded by the diverse communities 
+                        of greater Houston.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="services-header">
+                <div class="section-label">Join Us</div>
+                <h2 class="services-title">Weekly Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <h3 class="service-name">Sunday Worship</h3>
+                    <div class="service-time">9:00 AM</div>
+                    <p class="service-desc">
+                        Main worship service with praise, prayer, and biblical teaching in English and Malayalam.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <h3 class="service-name">Bible Study</h3>
+                    <div class="service-time">Saturday 7:00 PM</div>
+                    <p class="service-desc">
+                        In-depth Scripture study and discussion for spiritual growth and understanding.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <h3 class="service-name">Prayer Meeting</h3>
+                    <div class="service-time">Saturday 7:00 PM</div>
+                    <p class="service-desc">
+                        United in prayer for our church, community, and global needs.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">04</div>
+                    <h3 class="service-name">Sunday School</h3>
+                    <div class="service-time">After Service</div>
+                    <p class="service-desc">
+                        Age-appropriate biblical teaching for children to build a strong foundation in faith.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">05</div>
+                    <h3 class="service-name">Women's Fellowship</h3>
+                    <div class="service-time">Friday Morning</div>
+                    <p class="service-desc">
+                        Special gathering for sisters in Christ to encourage and support one another.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">06</div>
+                    <h3 class="service-name">Special Events</h3>
+                    <div class="service-time">Throughout Year</div>
+                    <p class="service-desc">
+                        Celebrating festivals, retreats, and community outreach programs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Section -->
+    <section class="ministries" id="ministries">
+        <div class="ministries-container">
+            <div class="ministries-header">
+                <div class="section-label">Get Involved</div>
+                <h2 class="ministries-title">Our Ministries</h2>
+            </div>
+            <div class="ministries-list">
+                <div class="ministry-item">
+                    <div class="ministry-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="ministry-name">Children's Ministry</h3>
+                    <p class="ministry-desc">
+                        Building strong foundations of faith for our youngest members through engaging lessons.
+                    </p>
+                </div>
+                <div class="ministry-item">
+                    <div class="ministry-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="ministry-name">Youth Ministry</h3>
+                    <p class="ministry-desc">
+                        Empowering young people to live boldly for Christ in today's world.
+                    </p>
+                </div>
+                <div class="ministry-item">
+                    <div class="ministry-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="ministry-name">Worship Team</h3>
+                    <p class="ministry-desc">
+                        Leading our congregation in heartfelt praise and worship every Sunday.
+                    </p>
+                </div>
+                <div class="ministry-item">
+                    <div class="ministry-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="ministry-name">Community Outreach</h3>
+                    <p class="ministry-desc">
+                        Serving the Malayalam community and beyond with Christ's love.
+                    </p>
+                </div>
+                <div class="ministry-item">
+                    <div class="ministry-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="ministry-name">Bible Education</h3>
+                    <p class="ministry-desc">
+                        Deepening understanding of God's Word through systematic study.
+                    </p>
+                </div>
+                <div class="ministry-item">
+                    <div class="ministry-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="ministry-name">Prayer Warriors</h3>
+                    <p class="ministry-desc">
+                        Interceding for our church, community, and global missions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership" id="leadership">
+        <div class="leadership-container">
+            <div class="leadership-header">
+                <div class="section-label">Our Leaders</div>
+                <h2 class="leadership-title">Church Leadership</h2>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="leader-image"></div>
+                    <h3 class="leader-name">Dr. Mathew Vairamon</h3>
+                    <p class="leader-role">Founding Pastor</p>
+                    <p class="leader-bio">
+                        Leading Stafford Bible Chapel since its founding in 2014, shepherding our congregation 
+                        from a home fellowship to a thriving church community.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-image"></div>
+                    <h3 class="leader-name">Elder Board</h3>
+                    <p class="leader-role">Church Elders</p>
+                    <p class="leader-bio">
+                        Our dedicated team of elders provides spiritual oversight and guidance to the congregation.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-image"></div>
+                    <h3 class="leader-name">Ministry Leaders</h3>
+                    <p class="leader-role">Department Heads</p>
+                    <p class="leader-bio">
+                        Faithful servants leading various ministries including worship, children's ministry, and outreach.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="contact-title">Visit Us</h2>
+                <div class="contact-item">
+                    <div class="contact-label">Address</div>
+                    <div class="contact-value">
+                        10502 Altonbury Lane<br>
+                        Houston, TX 77031
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">281-857-7538</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value">www.staffordbiblechapel.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Service Times</div>
+                    <div class="contact-value">
+                        Sunday: 9:00 AM<br>
+                        Saturday: 7:00 PM
+                    </div>
+                </div>
+            </div>
+            <div class="contact-map">
+                <div class="map-overlay">
+                    <h3 class="map-title">Find Us Here</h3>
+                    <p class="map-address">
+                        Located at the border of Stafford City, easily accessible from 
+                        Sugar Land, Missouri City, and greater Houston area.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Stafford Bible Chapel</h3>
+                    <p>
+                        An Indian Brethren Church serving the Malayalam community in Houston since 2014. 
+                        Join us for worship in English and Malayalam every Sunday at 9:00 AM.
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#ministries">Ministries</a></li>
+                        <li><a href="#leadership">Leadership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Service Times</h4>
+                    <ul>
+                        <li><a href="#services">Sunday - 9:00 AM</a></li>
+                        <li><a href="#services">Saturday - 7:00 PM</a></li>
+                        <li><a href="#services">Friday - Morning</a></li>
+                        <li><a href="#services">Sunday School</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#contact">Visit Us</a></li>
+                        <li><a href="tel:281-857-7538">Call Us</a></li>
+                        <li><a href="#contact">Directions</a></li>
+                        <li><a href="#contact">Prayer Request</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stafford Bible Chapel - Indian Brethren Church. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor (Desktop only)
+        if (window.innerWidth > 768) {
+            const cursor = document.querySelector('.cursor');
+            const follower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    follower.style.left = e.clientX + 'px';
+                    follower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+
+            document.addEventListener('mousedown', () => {
+                cursor.style.transform = 'scale(0.8)';
+                follower.style.transform = 'scale(0.8)';
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursor.style.transform = 'scale(1)';
+                follower.style.transform = 'scale(1)';
+            });
+        }
+
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .ministry-item, .leader-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Parallax Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.geometric-grid');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

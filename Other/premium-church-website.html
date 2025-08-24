@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel | Indian Brethren Church</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #C9A961;
+            --deep-gold: #B8924A;
+            --burgundy: #6B2737;
+            --deep-blue: #1A3A52;
+            --cream: #FAF7F2;
+            --ivory: #FFFEF9;
+            --charcoal: #2C2416;
+            --warm-gray: #8B7355;
+            --light-gold: #E4D4B1;
+            --shadow: rgba(28, 24, 20, 0.1);
+            --shadow-dark: rgba(28, 24, 20, 0.2);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(194, 164, 97, 0.03) 2px, rgba(194, 164, 97, 0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(194, 164, 97, 0.02) 2px, rgba(194, 164, 97, 0.02) 4px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+            border: 1px solid var(--light-gold);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--gold), var(--deep-gold));
+            border-radius: 6px;
+            border: 1px solid var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--deep-gold), var(--gold));
+        }
+
+        /* Premium Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(250, 247, 242, 0.98) 0%, 
+                rgba(255, 254, 249, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            box-shadow: 0 2px 30px var(--shadow);
+            border-bottom: 1px solid var(--light-gold);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 40px var(--shadow-dark);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .church-logo {
+            width: 50px;
+            height: 50px;
+            fill: var(--gold);
+        }
+
+        .church-name {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--deep-blue);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--deep-gold));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--deep-blue);
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--ivory) 100%);
+            z-index: 9999;
+            transition: left 0.3s ease;
+            padding: 100px 40px 40px;
+            box-shadow: 2px 0 30px var(--shadow-dark);
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--light-gold);
+            padding-bottom: 15px;
+        }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--deep-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 90px;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: 
+                radial-gradient(ellipse at top, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(26, 58, 82, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, var(--cream) 0%, var(--ivory) 100%);
+            overflow: hidden;
+        }
+
+        /* Church Window Pattern Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 150px, 
+                    rgba(201, 169, 97, 0.03) 150px, 
+                    rgba(201, 169, 97, 0.03) 151px);
+            z-index: 1;
+        }
+
+        /* Large Cross Watermark */
+        .cross-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 500px;
+            opacity: 0.04;
+            fill: var(--gold);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-arch {
+            width: 120px;
+            height: 60px;
+            fill: var(--gold);
+            margin: 0 auto 30px;
+            opacity: 0.5;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .hero-verse {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--charcoal);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--deep-gold) 100%);
+            color: white;
+            padding: 18px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(201, 169, 97, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(201, 169, 97, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep-blue);
+            padding: 18px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(201, 169, 97, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-ornament {
+            width: 60px;
+            height: 60px;
+            fill: var(--gold);
+            margin: 0 auto 20px;
+            opacity: 0.5;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--warm-gray);
+            font-style: italic;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+        }
+
+        .welcome-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .welcome-text {
+            position: relative;
+        }
+
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 84px;
+            line-height: 0.8;
+            margin-right: 10px;
+            margin-top: 10px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .welcome-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--deep-blue);
+            margin-bottom: 25px;
+        }
+
+        .welcome-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            line-height: 1.8;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .welcome-image {
+            position: relative;
+        }
+
+        .dove-icon {
+            width: 100%;
+            height: 400px;
+            fill: var(--light-gold);
+            opacity: 0.3;
+        }
+
+        /* Worship Schedule */
+        .schedule-section {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--ivory) 100%);
+            position: relative;
+        }
+
+        .schedule-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .schedule-card {
+            background: white;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .schedule-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--deep-gold));
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-dark);
+        }
+
+        .schedule-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--gold);
+            margin: 0 auto 20px;
+        }
+
+        .schedule-day {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .schedule-time {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .schedule-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        /* Ministries Section */
+        .ministries-section {
+            background: white;
+        }
+
+        .ministries-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .ministry-card {
+            background: linear-gradient(135deg, var(--ivory) 0%, white 100%);
+            padding: 40px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 5px 20px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .ministry-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+        }
+
+        .ministry-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px var(--shadow-dark);
+        }
+
+        .ministry-icon {
+            width: 45px;
+            height: 45px;
+            fill: var(--deep-gold);
+            margin-bottom: 20px;
+        }
+
+        .ministry-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+        }
+
+        .ministry-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--charcoal);
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--ivory) 100%);
+        }
+
+        .leadership-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .leader-card {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 15px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--deep-gold) 100%);
+            padding: 4px;
+            position: relative;
+        }
+
+        .leader-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leader-icon {
+            width: 80px;
+            height: 80px;
+            fill: var(--light-gold);
+        }
+
+        .leader-name {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .leader-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .leader-bio {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--charcoal);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, #2A4A62 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(201, 169, 97, 0.1) 0%, transparent 50%);
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            padding: 40px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            fill: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .contact-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .contact-text a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            color: var(--light-gold);
+        }
+
+        .map-container {
+            background: white;
+            padding: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 400px;
+            border: none;
+            filter: sepia(0.1) hue-rotate(15deg);
+        }
+
+        /* Faith Statement Section */
+        .faith-section {
+            background: white;
+            padding: 100px 40px;
+        }
+
+        .faith-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .faith-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            line-height: 1.9;
+            color: var(--charcoal);
+            margin-bottom: 30px;
+        }
+
+        .faith-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-style: italic;
+            transition: color 0.3s ease;
+        }
+
+        .faith-link:hover {
+            color: var(--deep-gold);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--charcoal) 0%, #1A1612 100%);
+            padding: 60px 40px 30px;
+            color: white;
+            position: relative;
+        }
+
+        .footer-ornament {
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold) 25%, var(--gold) 75%, transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column p,
+        .footer-column li {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .footer-cross {
+            width: 40px;
+            height: 40px;
+            fill: var(--gold);
+            margin: 0 auto 15px;
+            opacity: 0.6;
+        }
+
+        .footer-copyright {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .welcome-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 22px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .ministries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-inner {
+                padding: 15px 20px;
+            }
+
+            .church-name {
+                font-size: 18px;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-verse {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .drop-cap {
+                font-size: 60px;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-cross {
+            width: 60px;
+            height: 60px;
+            fill: var(--gold);
+            animation: pulse 1.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <svg class="loader-cross" viewBox="0 0 24 24">
+            <path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8V2z"/>
+        </svg>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#welcome">About Us</a></li>
+            <li><a href="#schedule">Worship Schedule</a></li>
+            <li><a href="#ministries">Ministries</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <svg class="church-logo" viewBox="0 0 100 100">
+                    <path d="M45 10h10v25h15v10H55v45H45V45H30V35h15V10z"/>
+                    <circle cx="50" cy="22" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <div class="church-name">Stafford Bible Chapel</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#welcome">About</a></li>
+                    <li><a href="#schedule">Worship</a></li>
+                    <li><a href="#ministries">Ministries</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <svg class="cross-watermark" viewBox="0 0 100 125">
+            <path d="M40 25h20v30h25v20H60v50H40V75H15V55h25V25z"/>
+        </svg>
+        <div class="hero-content">
+            <svg class="hero-arch" viewBox="0 0 100 50">
+                <path d="M10 50 Q 10 10, 50 10 Q 90 10, 90 50" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 50 Q 20 20, 50 20 Q 80 20, 80 50" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            </svg>
+            <h1 class="hero-title">Stafford Bible Chapel</h1>
+            <p class="hero-subtitle">Indian Brethren Church</p>
+            <p class="hero-verse">
+                "For where two or three are gathered together in my name, 
+                there am I in the midst of them." - Matthew 18:20
+            </p>
+            <div class="hero-cta">
+                <a href="#schedule" class="btn-primary">Join Us This Sunday</a>
+                <a href="#welcome" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="section welcome-section" id="welcome">
+        <div class="section-header">
+            <svg class="section-ornament" viewBox="0 0 100 100">
+                <path d="M50 10 L60 30 L80 30 L65 45 L70 65 L50 50 L30 65 L35 45 L20 30 L40 30 Z" 
+                      fill="currentColor" opacity="0.3"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+            </svg>
+            <h2 class="section-title">Welcome to Our Fellowship</h2>
+            <p class="section-subtitle">A Community Rooted in Faith and Love</p>
+        </div>
+        <div class="welcome-content">
+            <div class="welcome-text fade-in">
+                <h3>Our Story</h3>
+                <p>
+                    <span class="drop-cap">S</span>tafford Bible Chapel began its journey in November 2014, 
+                    founded by Dr. Mathew Vairamon with a vision to serve the Indian Brethren community in 
+                    the greater Houston area. What started as a single family gathering in a home has blossomed 
+                    into a vibrant congregation united in faith and fellowship.
+                </p>
+                <p>
+                    Our church family has grown from humble beginnings on Murphy Road to our current location 
+                    at 10502 Altonbury Lane, Houston, TX 77031. Positioned at the border of Stafford City, 
+                    we serve the diverse Malayalam-speaking community that calls this area home.
+                </p>
+                <p>
+                    Stafford has become the heart of the Malayalam community in Houston, with numerous churches, 
+                    restaurants, and cultural centers. We are blessed to be part of this rich tapestry, 
+                    offering worship services in both English and Malayalam to bridge generations and cultures 
+                    in Christ's love.
+                </p>
+            </div>
+            <div class="welcome-image fade-in">
+                <svg class="dove-icon" viewBox="0 0 200 200">
+                    <path d="M100 40 C 60 40, 40 70, 40 100 C 40 130, 60 160, 100 160 C 120 160, 135 150, 145 135 L 160 150 L 150 120 L 120 130 L 135 145 C 130 155, 115 160, 100 160" 
+                          fill="currentColor" opacity="0.2"/>
+                    <ellipse cx="100" cy="100" rx="30" ry="40" fill="currentColor" opacity="0.3"/>
+                    <path d="M130 100 L 150 80 L 145 85 L 130 100" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="90" cy="95" r="3" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Worship Schedule Section -->
+    <section class="section schedule-section" id="schedule">
+        <div class="section-header">
+            <svg class="section-ornament" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                <path d="M50 20 v30 l20 20" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+            <h2 class="section-title">Worship With Us</h2>
+            <p class="section-subtitle">Join Our Regular Services and Gatherings</p>
+        </div>
+        <div class="schedule-grid">
+            <div class="schedule-card fade-in">
+                <svg class="schedule-icon" viewBox="0 0 100 100">
+                    <circle cx="50" cy="30" r="15" fill="currentColor" opacity="0.3"/>
+                    <path d="M30 45 Q50 35, 70 45 v30 Q50 85, 30 75 z" fill="currentColor" opacity="0.5"/>
+                </svg>
+                <div class="schedule-day">Sunday</div>
+                <div class="schedule-time">9:00 AM</div>
+                <div class="schedule-description">
+                    Worship Service<br>
+                    Followed by Sunday School for Children
+                </div>
+            </div>
+            <div class="schedule-card fade-in">
+                <svg class="schedule-icon" viewBox="0 0 100 100">
+                    <ellipse cx="35" cy="50" rx="15" ry="20" fill="currentColor" opacity="0.3"/>
+                    <ellipse cx="65" cy="50" rx="15" ry="20" fill="currentColor" opacity="0.3"/>
+                    <path d="M35 30 Q50 20, 65 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                </svg>
+                <div class="schedule-day">Friday</div>
+                <div class="schedule-time">Morning</div>
+                <div class="schedule-description">
+                    Sister's Fellowship<br>
+                    Prayer and Bible Study
+                </div>
+            </div>
+            <div class="schedule-card fade-in">
+                <svg class="schedule-icon" viewBox="0 0 100 100">
+                    <rect x="30" y="25" width="40" height="50" rx="3" fill="currentColor" opacity="0.3"/>
+                    <path d="M40 35 h20 M40 45 h20 M40 55 h20 M40 65 h20" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                </svg>
+                <div class="schedule-day">Saturday</div>
+                <div class="schedule-time">7:00 PM</div>
+                <div class="schedule-description">
+                    Prayer Meeting<br>
+                    Bible Study & Fellowship
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Section -->
+    <section class="section ministries-section" id="ministries">
+        <div class="section-header">
+            <svg class="section-ornament" viewBox="0 0 100 100">
+                <circle cx="50" cy="30" r="8" fill="currentColor" opacity="0.3"/>
+                <circle cx="30" cy="55" r="8" fill="currentColor" opacity="0.3"/>
+                <circle cx="70" cy="55" r="8" fill="currentColor" opacity="0.3"/>
+                <path d="M50 38 L30 55 M50 38 L70 55" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+            </svg>
+            <h2 class="section-title">Our Ministries</h2>
+            <p class="section-subtitle">Serving the Body of Christ Together</p>
+        </div>
+        <div class="ministries-grid">
+            <div class="ministry-card fade-in">
+                <svg class="ministry-icon" viewBox="0 0 100 100">
+                    <circle cx="40" cy="30" r="10" fill="currentColor" opacity="0.5"/>
+                    <circle cx="60" cy="35" r="8" fill="currentColor" opacity="0.4"/>
+                    <path d="M30 45 Q40 40, 50 45 v20 Q40 70, 30 65 z" fill="currentColor" opacity="0.6"/>
+                    <path d="M50 50 Q60 45, 70 50 v15 Q60 70, 50 65 z" fill="currentColor" opacity="0.4"/>
+                </svg>
+                <h3 class="ministry-title">Sunday School</h3>
+                <p class="ministry-description">
+                    Nurturing young hearts in the Word of God through engaging Bible lessons 
+                    and activities designed for children of all ages.
+                </p>
+            </div>
+            <div class="ministry-card fade-in">
+                <svg class="ministry-icon" viewBox="0 0 100 100">
+                    <ellipse cx="50" cy="50" rx="30" ry="20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                    <circle cx="35" cy="50" r="5" fill="currentColor" opacity="0.5"/>
+                    <circle cx="50" cy="50" r="5" fill="currentColor" opacity="0.5"/>
+                    <circle cx="65" cy="50" r="5" fill="currentColor" opacity="0.5"/>
+                </svg>
+                <h3 class="ministry-title">Women's Fellowship</h3>
+                <p class="ministry-description">
+                    Friday morning gatherings for sisters in Christ to pray, study Scripture, 
+                    and support one another in faith and life.
+                </p>
+            </div>
+            <div class="ministry-card fade-in">
+                <svg class="ministry-icon" viewBox="0 0 100 100">
+                    <rect x="35" y="25" width="30" height="40" rx="2" fill="currentColor" opacity="0.3"/>
+                    <path d="M42 35 h16 M42 45 h16 M42 55 h16" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                    <path d="M20 70 h60" stroke="currentColor" stroke-width="3" opacity="0.4"/>
+                </svg>
+                <h3 class="ministry-title">Bible Study</h3>
+                <p class="ministry-description">
+                    Deep dive into God's Word every Saturday evening, exploring Scripture 
+                    and its application to our daily lives.
+                </p>
+            </div>
+            <div class="ministry-card fade-in">
+                <svg class="ministry-icon" viewBox="0 0 100 100">
+                    <path d="M50 20 L55 30 L65 30 L57 37 L60 47 L50 40 L40 47 L43 37 L35 30 L45 30 Z" 
+                          fill="currentColor" opacity="0.5"/>
+                    <path d="M30 60 Q50 50, 70 60" stroke="currentColor" stroke-width="2" fill="none" opacity="0.4"/>
+                </svg>
+                <h3 class="ministry-title">Prayer Ministry</h3>
+                <p class="ministry-description">
+                    Dedicated prayer warriors interceding for our church family, community, 
+                    and global missions through regular prayer meetings.
+                </p>
+            </div>
+            <div class="ministry-card fade-in">
+                <svg class="ministry-icon" viewBox="0 0 100 100">
+                    <circle cx="50" cy="40" r="20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                    <path d="M30 40 Q50 30, 70 40 Q50 50, 30 40" fill="currentColor" opacity="0.4"/>
+                    <path d="M40 55 h20 v15 h-20 z" fill="currentColor" opacity="0.3"/>
+                </svg>
+                <h3 class="ministry-title">Worship Team</h3>
+                <p class="ministry-description">
+                    Leading our congregation in heartfelt worship through music in both 
+                    English and Malayalam languages.
+                </p>
+            </div>
+            <div class="ministry-card fade-in">
+                <svg class="ministry-icon" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                    <path d="M50 30 v20 M40 50 h20 M35 35 l30 30 M65 35 l-30 30" 
+                          stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                </svg>
+                <h3 class="ministry-title">Outreach</h3>
+                <p class="ministry-description">
+                    Sharing the Gospel with our Stafford community and supporting missions 
+                    both locally and globally.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="section leadership-section" id="leadership">
+        <div class="section-header">
+            <svg class="section-ornament" viewBox="0 0 100 100">
+                <path d="M50 15 L60 35 L80 35 L65 48 L70 68 L50 55 L30 68 L35 48 L20 35 L40 35 Z" 
+                      fill="currentColor" opacity="0.3"/>
+            </svg>
+            <h2 class="section-title">Our Leadership</h2>
+            <p class="section-subtitle">Shepherding God's Flock with Dedication</p>
+        </div>
+        <div class="leadership-container">
+            <div class="leader-card fade-in">
+                <div class="leader-frame">
+                    <div class="leader-image">
+                        <svg class="leader-icon" viewBox="0 0 100 100">
+                            <circle cx="50" cy="35" r="15" fill="currentColor"/>
+                            <path d="M30 55 Q50 45, 70 55 v25 Q50 90, 30 80 z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="leader-name">Dr. Mathew Vairamon</h3>
+                <p class="leader-title">Founder & Pastor</p>
+                <p class="leader-bio">
+                    With a heart for serving the Malayalam-speaking community in Houston, 
+                    Dr. Vairamon founded Stafford Bible Chapel in 2014. His vision continues 
+                    to guide our fellowship as we grow together in faith and unity. Under his 
+                    leadership, our church has become a spiritual home for many families in 
+                    the Fort Bend and Harris County areas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faith Statement Section -->
+    <section class="section faith-section">
+        <div class="section-header">
+            <svg class="section-ornament" viewBox="0 0 100 100">
+                <rect x="35" y="20" width="30" height="40" rx="2" fill="currentColor" opacity="0.3"/>
+                <path d="M42 30 h16 M42 40 h16 M42 50 h16" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                <path d="M50 65 v15" stroke="currentColor" stroke-width="3" opacity="0.4"/>
+            </svg>
+            <h2 class="section-title">Our Faith</h2>
+            <p class="section-subtitle">Standing Firm on Biblical Truth</p>
+        </div>
+        <div class="faith-content">
+            <p class="faith-text fade-in">
+                We are a Bible-believing church committed to the fundamental truths of Scripture. 
+                Our fellowship is rooted in the Brethren tradition, emphasizing the priesthood of 
+                all believers, the authority of God's Word, and the simplicity of New Testament worship.
+            </p>
+            <p class="faith-text fade-in">
+                We gather in the name of our Lord Jesus Christ, celebrating the Lord's Supper weekly, 
+                practicing believer's baptism, and encouraging every member to use their spiritual gifts 
+                for the edification of the body.
+            </p>
+            <a href="https://colonialhills-biblechapel.com/" target="_blank" class="faith-link">
+                Learn more about our faith and beliefs
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="section-header">
+            <svg class="section-ornament" viewBox="0 0 100 100" fill="white">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                <path d="M50 30 v20 M35 50 h30" stroke="currentColor" stroke-width="3" opacity="0.5"/>
+            </svg>
+            <h2 class="section-title" style="color: var(--gold);">Visit Us</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">We'd Love to Welcome You</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-item fade-in">
+                    <svg class="contact-icon" viewBox="0 0 100 100">
+                        <path d="M50 20 L70 40 v35 H30 V40 Z" fill="currentColor" opacity="0.5"/>
+                        <rect x="42" y="55" width="16" height="20" fill="currentColor" opacity="0.3"/>
+                    </svg>
+                    <div class="contact-text">
+                        10502 Altonbury Lane<br>
+                        Houston, TX 77031<br>
+                        (Border of Stafford City)
+                    </div>
+                </div>
+                <div class="contact-item fade-in">
+                    <svg class="contact-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="3" opacity="0.5"/>
+                        <path d="M40 40 Q50 50, 60 60" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <div class="contact-text">
+                        <a href="tel:281-857-7538">281-857-7538</a>
+                    </div>
+                </div>
+                <div class="contact-item fade-in">
+                    <svg class="contact-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="25" fill="currentColor" opacity="0.3"/>
+                        <path d="M50 35 v15 l10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <div class="contact-text">
+                        Sunday Worship: 9:00 AM<br>
+                        Saturday Bible Study: 7:00 PM
+                    </div>
+                </div>
+                <div class="contact-item fade-in">
+                    <svg class="contact-icon" viewBox="0 0 100 100">
+                        <circle cx="40" cy="50" r="15" fill="currentColor" opacity="0.3"/>
+                        <circle cx="60" cy="50" r="15" fill="currentColor" opacity="0.3"/>
+                    </svg>
+                    <div class="contact-text">
+                        Services in English & Malayalam
+                    </div>
+                </div>
+            </div>
+            <div class="map-container fade-in">
+                <iframe 
+                    class="map-frame"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.5!2d-95.6!3d29.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDM2JzAwLjAiTiA5NcKwMzYnMDAuMCJX!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-ornament"></div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Stafford Bible Chapel</h4>
+                <p>
+                    Indian Brethren Church serving the Malayalam community 
+                    in Stafford, Sugar Land, Missouri City, and greater Houston area.
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>Service Times</h4>
+                <ul>
+                    <li>Sunday Worship: 9:00 AM</li>
+                    <li>Sunday School: After Service</li>
+                    <li>Friday Sisters: Morning</li>
+                    <li>Saturday Study: 7:00 PM</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <p>
+                    10502 Altonbury Lane<br>
+                    Houston, TX 77031<br>
+                    Phone: 281-857-7538<br>
+                    <a href="#" style="color: var(--gold); text-decoration: none;">
+                        www.staffordbiblechapel.com
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <svg class="footer-cross" viewBox="0 0 100 100">
+                <path d="M45 20h10v25h15v10H55v35H45V55H30V45h15V20z"/>
+            </svg>
+            <p class="footer-copyright">
+                © 2024 Stafford Bible Chapel. All Rights Reserved. Founded November 2014 by Dr. Mathew Vairamon.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            mobileMenuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 90;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && window.innerWidth > 768) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Dynamic verse rotation
+        const verses = [
+            {
+                text: "For where two or three are gathered together in my name, there am I in the midst of them.",
+                reference: "Matthew 18:20"
+            },
+            {
+                text: "Let us not give up meeting together, as some are in the habit of doing, but let us encourage one another.",
+                reference: "Hebrews 10:25"
+            },
+            {
+                text: "They devoted themselves to the apostles' teaching and to fellowship, to the breaking of bread and to prayer.",
+                reference: "Acts 2:42"
+            }
+        ];
+
+        let currentVerseIndex = 0;
+        const verseElement = document.querySelector('.hero-verse');
+
+        if (verseElement) {
+            setInterval(() => {
+                currentVerseIndex = (currentVerseIndex + 1) % verses.length;
+                verseElement.style.opacity = '0';
+                setTimeout(() => {
+                    verseElement.innerHTML = `"${verses[currentVerseIndex].text}" - ${verses[currentVerseIndex].reference}`;
+                    verseElement.style.opacity = '1';
+                }, 500);
+            }, 8000);
+        }
+
+        // Add gentle floating animation to ornaments
+        document.querySelectorAll('.section-ornament').forEach((ornament, index) => {
+            ornament.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
+        });
+
+        // CSS for floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

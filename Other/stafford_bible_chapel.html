@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel - Indian Brethren Church</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Crimson+Pro:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-gold: #B8860B;
+            --deep-burgundy: #5D1F1F;
+            --classic-navy: #1A2E4C;
+            --warm-cream: #FAF6F2;
+            --soft-parchment: #F5EDE4;
+            --antique-bronze: #8B6F47;
+            --sacred-purple: #4A3C5C;
+            --heavenly-blue: #4A6FA5;
+            --pure-white: #FFFFFF;
+            --charcoal: #2C2C2C;
+            --sage-green: #6B7F67;
+            --shadow-light: 0 2px 10px rgba(0,0,0,0.08);
+            --shadow-medium: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-heavy: 0 8px 35px rgba(0,0,0,0.15);
+            --shadow-ornate: 0 12px 45px rgba(0,0,0,0.18);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', Georgia, serif;
+            background: var(--warm-cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Ornamental SVG Patterns */
+        .ornament-divider {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+            opacity: 0.6;
+        }
+        
+        .ornament-divider svg {
+            width: 250px;
+            height: 40px;
+        }
+        
+        /* Premium Header with Gothic Arch Influence */
+        .sacred-header {
+            background: linear-gradient(135deg, var(--classic-navy) 0%, var(--deep-burgundy) 100%);
+            position: relative;
+            padding: 2rem 0;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .header-ornament {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.03) 20px,
+                rgba(255,255,255,0.03) 40px
+            );
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .church-identity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .church-emblem {
+            width: 120px;
+            height: 120px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .church-emblem::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 2px solid var(--warm-cream);
+            border-radius: 50%;
+        }
+        
+        .church-emblem svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--warm-cream);
+            z-index: 1;
+        }
+        
+        .church-titles {
+            text-align: center;
+            color: var(--warm-cream);
+        }
+        
+        .church-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+        
+        .church-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-gold);
+        }
+        
+        .church-verse {
+            margin-top: 1rem;
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Premium Navigation */
+        .divine-nav {
+            background: var(--pure-white);
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--soft-parchment);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 0;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 1.5rem 2rem;
+            color: var(--classic-navy);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-gold);
+            background: var(--soft-parchment);
+        }
+        
+        .nav-link:hover::after {
+            width: 60%;
+        }
+        
+        /* Hero Section with Stained Glass Effect */
+        .hero-sanctuary {
+            position: relative;
+            min-height: 600px;
+            background: linear-gradient(180deg, var(--classic-navy) 0%, var(--sacred-purple) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .stained-glass-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--primary-gold) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, var(--heavenly-blue) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, var(--deep-burgundy) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 1000px;
+        }
+        
+        .welcome-cross {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            fill: var(--primary-gold);
+            opacity: 0.8;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--warm-cream);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+        
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--soft-parchment);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: var(--primary-gold);
+            color: var(--pure-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-heavy);
+            background: var(--antique-bronze);
+        }
+        
+        /* About Section */
+        .about-sanctuary {
+            padding: 5rem 0;
+            background: var(--pure-white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--classic-navy);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--antique-bronze);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .about-image-frame {
+            position: relative;
+            padding: 2rem;
+            background: var(--soft-parchment);
+            border-radius: 10px;
+            box-shadow: var(--shadow-ornate);
+        }
+        
+        .about-image-inner {
+            background: var(--classic-navy);
+            padding: 3rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+        
+        .scripture-display {
+            text-align: center;
+            color: var(--warm-cream);
+        }
+        
+        .scripture-icon {
+            width: 60px;
+            height: 60px;
+            fill: var(--primary-gold);
+            margin-bottom: 2rem;
+        }
+        
+        .scripture-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .scripture-ref {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Services Section */
+        .services-sanctuary {
+            padding: 5rem 0;
+            background: var(--soft-parchment);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: var(--pure-white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--antique-bronze));
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            fill: var(--classic-navy);
+        }
+        
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--classic-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .service-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-description {
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        /* Faith Statement Section */
+        .faith-sanctuary {
+            padding: 5rem 0;
+            background: linear-gradient(180deg, var(--pure-white) 0%, var(--soft-parchment) 100%);
+        }
+        
+        .faith-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .faith-card {
+            background: var(--pure-white);
+            padding: 2rem;
+            border-left: 4px solid var(--primary-gold);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+        
+        .faith-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .faith-icon {
+            width: 40px;
+            height: 40px;
+            fill: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .faith-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--classic-navy);
+            margin-bottom: 0.8rem;
+        }
+        
+        .faith-description {
+            color: var(--charcoal);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact-sanctuary {
+            padding: 5rem 0;
+            background: var(--classic-navy);
+            color: var(--warm-cream);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-card {
+            text-align: center;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1.5rem;
+            fill: var(--primary-gold);
+        }
+        
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .contact-info a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--soft-parchment);
+        }
+        
+        /* Footer */
+        .sacred-footer {
+            background: var(--deep-burgundy);
+            color: var(--warm-cream);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-ornament {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            fill: var(--primary-gold);
+            opacity: 0.6;
+        }
+        
+        .footer-verse {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--warm-cream);
+        }
+        
+        .footer-copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .church-name {
+                font-size: 2rem;
+            }
+            
+            .church-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .nav-link {
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .header-content {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .church-name {
+                font-size: 1.5rem;
+            }
+            
+            .church-emblem {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .church-emblem svg {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            
+            .hero-description {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sacred Header -->
+    <header class="sacred-header">
+        <div class="header-ornament"></div>
+        <div class="header-content">
+            <div class="church-identity">
+                <div class="church-emblem">
+                    <!-- Church Cross SVG -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 2v6H8v2h3v12h2V10h3V8h-3V2h-2z"/>
+                        <path d="M4 8h4v2H4zm12 0h4v2h-4z"/>
+                    </svg>
+                </div>
+                <div class="church-titles">
+                    <h1 class="church-name">Stafford Bible Chapel</h1>
+                    <p class="church-subtitle">Indian Brethren Church</p>
+                    <p class="church-verse">"Gathering in the Name of the Lord Jesus Christ"</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Divine Navigation -->
+    <nav class="divine-nav">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#faith" class="nav-link">Our Faith</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Sanctuary -->
+    <section id="home" class="hero-sanctuary">
+        <div class="stained-glass-overlay"></div>
+        <div class="hero-content">
+            <svg class="welcome-cross" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 2v7H7v2h4v11h2V11h4V9h-4V2z"/>
+            </svg>
+            <h2 class="hero-title">Welcome to Our Fellowship</h2>
+            <p class="hero-description">
+                Serving the Malayalee community in Stafford and Greater Houston since 2014, 
+                we gather to worship our Lord Jesus Christ according to New Testament principles.
+            </p>
+            <a href="#services" class="hero-cta">
+                Join Us This Sunday
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+    
+    <!-- About Sanctuary -->
+    <section id="about" class="about-sanctuary">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Established 2014</p>
+                <h2 class="section-title">Our Story & Mission</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Stafford Bible Chapel began in November 2014 through the vision and dedication of 
+                        Dr. Mathew Vairamon. What started as a single family gathering in a home has grown 
+                        into a vibrant community of believers from the Indian diaspora and beyond.
+                    </p>
+                    <p>
+                        From our humble beginnings, we moved to Murphy Road in Stafford before establishing 
+                        our current location at 10502 Altonbury Lane, Houston, TX 77031. Situated at the 
+                        border of Stafford City, we serve the spiritual needs of the large Malayalee 
+                        community in this area, often considered the capital of Malayalees in Houston.
+                    </p>
+                    <p>
+                        We are an assembly of believers gathering solely in the name of the Lord Jesus Christ, 
+                        holding fast to New Testament principles of worship and fellowship. Our meetings are 
+                        conducted in both English and Malayalam, welcoming all who seek to know Christ.
+                    </p>
+                </div>
+                
+                <div class="about-image-frame">
+                    <div class="about-image-inner">
+                        <div class="scripture-display">
+                            <svg class="scripture-icon" viewBox="0 0 24 24">
+                                <path d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19c0-.101.009-.191.024-.273.112-.575.583-.717.987-.727H6.012zM8 6h9v2H8V6zm0 4h9v2H8v-2z"/>
+                            </svg>
+                            <p class="scripture-text">
+                                "For where two or three are gathered together in my name, 
+                                there am I in the midst of them."
+                            </p>
+                            <p class="scripture-ref">Matthew 18:20</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ornamental Divider -->
+        <div class="ornament-divider">
+            <svg viewBox="0 0 250 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,20 Q62.5,0 125,20 T250,20" stroke="#B8860B" stroke-width="2" fill="none"/>
+                <circle cx="125" cy="20" r="5" fill="#B8860B"/>
+                <circle cx="62.5" cy="20" r="3" fill="#B8860B"/>
+                <circle cx="187.5" cy="20" r="3" fill="#B8860B"/>
+            </svg>
+        </div>
+    </section>
+    
+    <!-- Services Sanctuary -->
+    <section id="services" class="services-sanctuary">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Join Us in Worship</p>
+                <h2 class="section-title">Service Times</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7m0 1a6 6 0 0 1 6 6c0 3.83-4.63 9.49-6 11.19C10.63 18.49 6 12.83 6 9a6 6 0 0 1 6-6z"/>
+                    </svg>
+                    <h3 class="service-title">Sunday Worship</h3>
+                    <p class="service-time">9:00 AM</p>
+                    <p class="service-description">
+                        Breaking of Bread and worship service in English and Malayalam
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3m6.82 6L12 12.72 5.18 9 12 5.28 18.82 9M17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                    </svg>
+                    <h3 class="service-title">Sunday School</h3>
+                    <p class="service-time">After Worship Service</p>
+                    <p class="service-description">
+                        Bible education for children following the morning service
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        <path d="M8 10h3v3h1v-3h3V9h-3V6h-1v3H8v1z"/>
+                    </svg>
+                    <h3 class="service-title">Friday Sisters Meeting</h3>
+                    <p class="service-time">Morning</p>
+                    <p class="service-description">
+                        Special gathering for women's fellowship and prayer
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24">
+                        <path d="M18 18.5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m1.5-9l1.96 2.5H17V9.5m3.5 1.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5M6 18.5A1.5 1.5 0 0 1 4.5 17 1.5 1.5 0 0 1 6 15.5 1.5 1.5 0 0 1 7.5 17 1.5 1.5 0 0 1 6 18.5M7 9.5V12H2.46l1.96-2.5M3.5 11c-1.93 0-3.5 1.57-3.5 3.5S1.57 18 3.5 18 7 16.43 7 14.5 5.43 11 3.5 11M16 4.8C16 3.24 14.76 2 13.2 2H10.8C9.24 2 8 3.24 8 4.8V15H16V4.8z"/>
+                    </svg>
+                    <h3 class="service-title">Saturday Bible Study</h3>
+                    <p class="service-time">7:00 PM</p>
+                    <p class="service-description">
+                        Prayer meeting and systematic Bible study for spiritual growth
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Faith Statement Sanctuary -->
+    <section id="faith" class="faith-sanctuary">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">What We Believe</p>
+                <h2 class="section-title">Our Statement of Faith</h2>
+            </div>
+            
+            <div class="faith-grid">
+                <div class="faith-card">
+                    <svg class="faith-icon" viewBox="0 0 24 24">
+                        <path d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1zM8 6h9v2H8V6zm0 4h9v2H8v-2z"/>
+                    </svg>
+                    <h3 class="faith-title">The Holy Scriptures</h3>
+                    <p class="faith-description">
+                        We believe the Bible is the divinely inspired Word of God, 
+                        verbally inspired and the final authority for all faith and practice.
+                    </p>
+                </div>
+                
+                <div class="faith-card">
+                    <svg class="faith-icon" viewBox="0 0 24 24">
+                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                    </svg>
+                    <h3 class="faith-title">The Trinity</h3>
+                    <p class="faith-description">
+                        We believe in one God eternally existing in three equally divine Persons: 
+                        the Father, the Son, and the Holy Spirit.
+                    </p>
+                </div>
+                
+                <div class="faith-card">
+                    <svg class="faith-icon" viewBox="0 0 24 24">
+                        <path d="M11 2v7H7v2h4v11h2V11h4V9h-4V2z"/>
+                    </svg>
+                    <h3 class="faith-title">Jesus Christ</h3>
+                    <p class="faith-description">
+                        We believe Jesus Christ is the eternal Son of God, born of the virgin Mary, 
+                        who died for our sins and rose again for our justification.
+                    </p>
+                </div>
+                
+                <div class="faith-card">
+                    <svg class="faith-icon" viewBox="0 0 24 24">
+                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                    </svg>
+                    <h3 class="faith-title">Salvation</h3>
+                    <p class="faith-description">
+                        We believe salvation is by grace through faith in Jesus Christ alone, 
+                        not by works, and is the free gift of God to all who believe.
+                    </p>
+                </div>
+                
+                <div class="faith-card">
+                    <svg class="faith-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <h3 class="faith-title">The Church</h3>
+                    <p class="faith-description">
+                        We believe the Church is the body of Christ, composed of all believers, 
+                        gathering in His name according to New Testament principles.
+                    </p>
+                </div>
+                
+                <div class="faith-card">
+                    <svg class="faith-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                    <h3 class="faith-title">The Second Coming</h3>
+                    <p class="faith-description">
+                        We believe in the imminent return of our Lord Jesus Christ 
+                        to receive His Church and establish His kingdom.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ornamental Divider -->
+        <div class="ornament-divider">
+            <svg viewBox="0 0 250 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,20 Q62.5,0 125,20 T250,20" stroke="#B8860B" stroke-width="2" fill="none"/>
+                <circle cx="125" cy="20" r="5" fill="#B8860B"/>
+                <circle cx="62.5" cy="20" r="3" fill="#B8860B"/>
+                <circle cx="187.5" cy="20" r="3" fill="#B8860B"/>
+            </svg>
+        </div>
+    </section>
+    
+    <!-- Contact Sanctuary -->
+    <section id="contact" class="contact-sanctuary">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle" style="color: var(--primary-gold);">Visit Us</p>
+                <h2 class="section-title" style="color: var(--warm-cream);">Contact & Location</h2>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+                    </svg>
+                    <h3 class="contact-title">Our Location</h3>
+                    <div class="contact-info">
+                        10502 Altonbury Lane<br>
+                        Houston, TX 77031<br>
+                        (Border of Stafford City)
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <h3 class="contact-title">Phone</h3>
+                    <div class="contact-info">
+                        <a href="tel:281-857-7538">281-857-7538</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <svg class="contact-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                    <h3 class="contact-title">Website</h3>
+                    <div class="contact-info">
+                        <a href="http://www.staffordbiblechapel.com">www.staffordbiblechapel.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sacred Footer -->
+    <footer class="sacred-footer">
+        <svg class="footer-ornament" viewBox="0 0 24 24">
+            <path d="M11 2v7H7v2h4v11h2V11h4V9h-4V2z"/>
+        </svg>
+        
+        <p class="footer-verse">
+            "For God so loved the world that He gave His only begotten Son, 
+            that whoever believes in Him should not perish but have everlasting life." 
+            - John 3:16
+        </p>
+        
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#faith">Faith</a>
+            <a href="#contact">Contact</a>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>&copy; 2025 Stafford Bible Chapel. All rights reserved.</p>
+            <p>An Indian Brethren Assembly • Houston, Texas</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.divine-nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-sanctuary');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+        
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards
+        document.querySelectorAll('.service-card, .faith-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

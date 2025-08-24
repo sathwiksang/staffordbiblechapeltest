@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel - Where God's Word Lives</title>
+    
+    <!-- Clean, Readable Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,300;1,7..72,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pure-white: #FFFFFF;
+            --scripture-ink: #1A1A1A;
+            --parchment: #FBF8F3;
+            --wheat: #E8D5B7;
+            --olive: #7C7960;
+            --cedar: #5D4E37;
+            --heaven-blue: #4A5568;
+            --morning-gold: #D4A574;
+            --wine: #8B3A3A;
+            --shadow-soft: rgba(26, 26, 26, 0.08);
+            --shadow-medium: rgba(26, 26, 26, 0.15);
+            --verse-highlight: rgba(212, 165, 116, 0.1);
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--scripture-ink);
+            background: var(--pure-white);
+            overflow-x: hidden;
+        }
+
+        /* Custom Selection */
+        ::selection {
+            background: var(--verse-highlight);
+            color: var(--scripture-ink);
+        }
+
+        /* Scripture-Focused Loading */
+        .scripture-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--parchment);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .scripture-loader.hidden {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .loader-verse {
+            text-align: center;
+            max-width: 600px;
+            padding: 0 40px;
+        }
+
+        .loader-verse-text {
+            font-family: 'Literata', serif;
+            font-size: 24px;
+            color: var(--cedar);
+            margin-bottom: 20px;
+            font-weight: 400;
+            animation: gentleFade 2s ease infinite;
+        }
+
+        @keyframes gentleFade {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .loader-verse-ref {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--olive);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Clean Navigation */
+        .header-assembly {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--parchment);
+        }
+
+        .header-assembly.scrolled {
+            box-shadow: 0 2px 20px var(--shadow-soft);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .assembly-identity {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+        }
+
+        .assembly-name {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--scripture-ink);
+            letter-spacing: -0.5px;
+        }
+
+        .assembly-verse-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: var(--olive);
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .navigation-items ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .navigation-items a {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--scripture-ink);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .navigation-items a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--morning-gold);
+            transition: width 0.3s ease;
+        }
+
+        .navigation-items a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--scripture-ink);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--parchment);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 100px 40px 40px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-menu a {
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            color: var(--scripture-ink);
+            text-decoration: none;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Scripture-Centered Hero */
+        .hero-scripture {
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--parchment);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Scripture Pattern */
+        .scripture-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            font-family: 'Literata', serif;
+            font-size: 14px;
+            line-height: 2;
+            color: var(--scripture-ink);
+            pointer-events: none;
+            transform: rotate(-5deg) scale(1.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            text-align: center;
+            padding: 0 40px;
+        }
+
+        .hero-verse-primary {
+            font-family: 'Literata', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 400;
+            line-height: 1.4;
+            color: var(--cedar);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .verse-emphasis {
+            color: var(--morning-gold);
+            font-weight: 600;
+        }
+
+        .hero-verse-reference {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--olive);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+        }
+
+        .hero-assembly-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(48px, 7vw, 72px);
+            font-weight: 700;
+            color: var(--scripture-ink);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-assembly-subtitle {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 400;
+            color: var(--olive);
+            margin-bottom: 50px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-scripture {
+            padding: 18px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-scripture-primary {
+            background: var(--cedar);
+            color: var(--pure-white);
+        }
+
+        .btn-scripture-primary:hover {
+            background: var(--scripture-ink);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow-medium);
+        }
+
+        .btn-scripture-secondary {
+            background: transparent;
+            color: var(--cedar);
+            border: 2px solid var(--cedar);
+        }
+
+        .btn-scripture-secondary:hover {
+            background: var(--cedar);
+            color: var(--pure-white);
+        }
+
+        /* Living Verses Animation */
+        .living-verses {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-verse {
+            position: absolute;
+            font-family: 'Crimson Pro', serif;
+            font-size: 14px;
+            color: var(--scripture-ink);
+            opacity: 0;
+            animation: floatVerse 20s infinite;
+        }
+
+        @keyframes floatVerse {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* About Section - Scripture First */
+        .section-foundation {
+            padding: 120px 40px;
+            background: var(--pure-white);
+        }
+
+        .section-header {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+
+        .section-verse {
+            font-family: 'Literata', serif;
+            font-size: 24px;
+            color: var(--morning-gold);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 600;
+            color: var(--scripture-ink);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-family: 'Source Serif 4', serif;
+            font-size: 20px;
+            color: var(--olive);
+            font-weight: 400;
+        }
+
+        /* Story Through Scripture */
+        .story-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-content {
+            position: relative;
+        }
+
+        .story-chapter {
+            margin-bottom: 40px;
+        }
+
+        .chapter-verse {
+            font-family: 'Crimson Pro', serif;
+            font-size: 16px;
+            color: var(--morning-gold);
+            font-style: italic;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .chapter-verse::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            font-size: 40px;
+            color: var(--wheat);
+            top: -10px;
+        }
+
+        .chapter-text {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--scripture-ink);
+            text-align: justify;
+        }
+
+        .story-visual {
+            position: relative;
+            padding: 60px;
+            background: var(--parchment);
+        }
+
+        .scripture-wall {
+            font-family: 'Literata', serif;
+            font-size: 20px;
+            line-height: 2;
+            color: var(--cedar);
+            text-align: center;
+        }
+
+        .scripture-wall .verse {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .scripture-wall .verse:hover {
+            background: var(--pure-white);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px var(--shadow-soft);
+        }
+
+        /* Gathering Times - Clean & Clear */
+        .gathering-times {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, var(--parchment) 0%, var(--pure-white) 100%);
+        }
+
+        .times-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .time-card {
+            background: var(--pure-white);
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 5px 20px var(--shadow-soft);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--morning-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .time-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .time-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+        }
+
+        .time-day {
+            font-family: 'Fraunces', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--scripture-ink);
+            margin-bottom: 10px;
+        }
+
+        .time-hour {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--morning-gold);
+            margin-bottom: 20px;
+        }
+
+        .time-description {
+            font-family: 'Lora', serif;
+            font-size: 16px;
+            color: var(--olive);
+            line-height: 1.6;
+        }
+
+        .time-verse {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--parchment);
+            font-family: 'Crimson Pro', serif;
+            font-size: 14px;
+            color: var(--cedar);
+            font-style: italic;
+        }
+
+        /* Ministries Through Scripture */
+        .ministries-scripture {
+            padding: 120px 40px;
+            background: var(--pure-white);
+        }
+
+        .ministries-mosaic {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .ministry-panel {
+            padding: 40px;
+            background: var(--parchment);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .ministry-panel:nth-child(even) {
+            background: var(--pure-white);
+            border: 1px solid var(--parchment);
+        }
+
+        .ministry-panel:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+        }
+
+        .ministry-scripture {
+            font-family: 'Literata', serif;
+            font-size: 18px;
+            color: var(--morning-gold);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .ministry-name {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--scripture-ink);
+            margin-bottom: 15px;
+        }
+
+        .ministry-description {
+            font-family: 'Lora', serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--olive);
+        }
+
+        /* Leadership - Servant Focus */
+        .servant-leadership {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, var(--pure-white) 0%, var(--parchment) 100%);
+        }
+
+        .leadership-presentation {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--pure-white);
+            padding: 80px 60px;
+            box-shadow: 0 20px 60px var(--shadow-medium);
+        }
+
+        .leader-verse-intro {
+            font-family: 'Literata', serif;
+            font-size: 22px;
+            color: var(--morning-gold);
+            font-style: italic;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .leader-name {
+            font-family: 'Fraunces', serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--scripture-ink);
+            margin-bottom: 10px;
+        }
+
+        .leader-role {
+            font-family: 'Source Serif 4', serif;
+            font-size: 20px;
+            color: var(--olive);
+            margin-bottom: 40px;
+        }
+
+        .leader-testimony {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--scripture-ink);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        /* Our Beliefs - Scripture Foundation */
+        .beliefs-foundation {
+            padding: 120px 40px;
+            background: var(--cedar);
+            color: var(--pure-white);
+            text-align: center;
+        }
+
+        .beliefs-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .belief-statements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .belief-card {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .belief-title {
+            font-family: 'Fraunces', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--wheat);
+        }
+
+        .belief-verse {
+            font-family: 'Crimson Pro', serif;
+            font-size: 16px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .beliefs-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 40px;
+            background: var(--morning-gold);
+            color: var(--scripture-ink);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .beliefs-link:hover {
+            background: var(--wheat);
+            transform: translateY(-2px);
+        }
+
+        /* Contact - Open Doors */
+        .open-doors {
+            padding: 120px 40px;
+            background: var(--pure-white);
+        }
+
+        .contact-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding: 60px;
+            background: var(--parchment);
+        }
+
+        .contact-welcome {
+            font-family: 'Literata', serif;
+            font-size: 24px;
+            color: var(--morning-gold);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .contact-detail {
+            margin-bottom: 30px;
+        }
+
+        .contact-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--olive);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            color: var(--scripture-ink);
+            line-height: 1.6;
+        }
+
+        .contact-value a {
+            color: var(--cedar);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: var(--morning-gold);
+        }
+
+        .map-container {
+            height: 600px;
+            background: var(--parchment);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: sepia(0.2) contrast(1.1);
+        }
+
+        /* Footer - Foundation Verse */
+        .footer-foundation {
+            background: var(--scripture-ink);
+            color: var(--pure-white);
+            padding: 80px 40px 40px;
+            text-align: center;
+        }
+
+        .footer-verse {
+            font-family: 'Literata', serif;
+            font-size: 24px;
+            color: var(--wheat);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .footer-verse-ref {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--morning-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+            display: block;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+
+        .footer-column h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 18px;
+            color: var(--wheat);
+            margin-bottom: 20px;
+        }
+
+        .footer-column p,
+        .footer-column li {
+            font-family: 'Lora', serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-copyright {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        /* Scripture Focus Elements */
+        .verse-card {
+            position: relative;
+            padding: 30px;
+            background: var(--verse-highlight);
+            border-left: 4px solid var(--morning-gold);
+            margin: 30px 0;
+        }
+
+        .verse-text {
+            font-family: 'Literata', serif;
+            font-size: 20px;
+            color: var(--cedar);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .verse-location {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--olive);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .story-grid,
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .navigation-items {
+                display: none;
+            }
+
+            .hero-assembly-title {
+                font-size: 42px;
+            }
+
+            .section {
+                padding: 80px 30px;
+            }
+
+            .ministries-mosaic {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-scripture {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .hero-verse-primary {
+                font-size: 28px;
+            }
+
+            .hero-assembly-title {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .leadership-presentation {
+                padding: 40px 30px;
+            }
+        }
+
+        /* Subtle Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scripture Reading Mode */
+        .reading-mode {
+            background: var(--parchment);
+            color: var(--scripture-ink);
+        }
+
+        .reading-mode .header-assembly {
+            background: rgba(251, 248, 243, 0.95);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.5;
+            }
+
+            .header-assembly,
+            .hero-actions,
+            .map-container {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scripture Loading -->
+    <div class="scripture-loader" id="loader">
+        <div class="loader-verse">
+            <div class="loader-verse-text">
+                "They continued stedfastly in the apostles' doctrine and fellowship, 
+                and in breaking of bread, and in prayers."
+            </div>
+            <div class="loader-verse-ref">Acts 2:42</div>
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#foundation">Our Foundation</a></li>
+            <li><a href="#gathering">Gathering Times</a></li>
+            <li><a href="#ministries">Ministries</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#beliefs">Our Beliefs</a></li>
+            <li><a href="#contact">Visit Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Clean Header -->
+    <header class="header-assembly" id="header">
+        <div class="header-content">
+            <div class="assembly-identity">
+                <h1 class="assembly-name">Stafford Bible Chapel</h1>
+                <span class="assembly-verse-tag">Matthew 18:20</span>
+            </div>
+            <nav class="navigation-items">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#foundation">Foundation</a></li>
+                    <li><a href="#gathering">Gathering</a></li>
+                    <li><a href="#ministries">Ministries</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#beliefs">Beliefs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Scripture-Centered Hero -->
+    <section class="hero-scripture" id="home">
+        <div class="scripture-background">
+            In the beginning was the Word, and the Word was with God, and the Word was God. 
+            All Scripture is given by inspiration of God, and is profitable for doctrine, 
+            for reproof, for correction, for instruction in righteousness. 
+            Thy word is a lamp unto my feet, and a light unto my path. 
+            The grass withereth, the flower fadeth: but the word of our God shall stand for ever.
+        </div>
+        <div class="living-verses">
+            <div class="floating-verse" style="left: 10%; animation-delay: 0s;">John 1:1</div>
+            <div class="floating-verse" style="left: 30%; animation-delay: 5s;">Psalm 119:105</div>
+            <div class="floating-verse" style="left: 50%; animation-delay: 10s;">Isaiah 40:8</div>
+            <div class="floating-verse" style="left: 70%; animation-delay: 15s;">2 Timothy 3:16</div>
+            <div class="floating-verse" style="left: 90%; animation-delay: 20s;">Hebrews 4:12</div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-verse-primary">
+                "For where <span class="verse-emphasis">two or three</span> are gathered together 
+                in my name, there am I in the <span class="verse-emphasis">midst</span> of them."
+            </div>
+            <div class="hero-verse-reference">Matthew 18:20</div>
+            <h1 class="hero-assembly-title">Stafford Bible Chapel</h1>
+            <p class="hero-assembly-subtitle">Indian Brethren Assembly • Houston</p>
+            <div class="hero-actions">
+                <a href="#gathering" class="btn-scripture btn-scripture-primary">Join Our Gathering</a>
+                <a href="#foundation" class="btn-scripture btn-scripture-secondary">Our Foundation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foundation Section -->
+    <section class="section-foundation" id="foundation">
+        <div class="section-header">
+            <div class="section-verse">"Other foundation can no man lay than that is laid, which is Jesus Christ"</div>
+            <h2 class="section-title">Our Foundation in Christ</h2>
+            <p class="section-subtitle">A Fellowship Rooted in God's Word Since 2014</p>
+        </div>
+        <div class="story-grid">
+            <div class="story-content">
+                <div class="story-chapter fade-in">
+                    <div class="chapter-verse">
+                        "Not forsaking the assembling of ourselves together, as the manner of some is; 
+                        but exhorting one another" - Hebrews 10:25
+                    </div>
+                    <p class="chapter-text">
+                        In November 2014, Dr. Mathew Vairamon responded to the Lord's calling to establish 
+                        a Bible-centered assembly in Stafford. Beginning with one family gathering in a home 
+                        for prayer and the study of God's Word, the Lord has faithfully grown this fellowship 
+                        into a testimony of His grace among the Indian Brethren community in Houston.
+                    </p>
+                </div>
+                <div class="story-chapter fade-in">
+                    <div class="chapter-verse">
+                        "And they continued stedfastly in the apostles' doctrine and fellowship" - Acts 2:42
+                    </div>
+                    <p class="chapter-text">
+                        From Murphy Road to our current gathering at 10502 Altonbury Lane, Houston, TX 77031, 
+                        we have witnessed God's faithfulness. Located at the border of Stafford City, we serve 
+                        as a spiritual home for Malayalam-speaking believers from Sugar Land, Missouri City, 
+                        Rosenberg, Richmond, Pearland, and throughout Fort Bend and Harris Counties.
+                    </p>
+                </div>
+                <div class="story-chapter fade-in">
+                    <div class="chapter-verse">
+                        "That they all may be one; as thou, Father, art in me, and I in thee" - John 17:21
+                    </div>
+                    <p class="chapter-text">
+                        Stafford has become the heart of the Malayalam community in Houston. We gather to 
+                        worship in both English and Malayalam, uniting generations in the truth of Scripture 
+                        and the simplicity of New Testament fellowship.
+                    </p>
+                </div>
+            </div>
+            <div class="story-visual fade-in">
+                <div class="scripture-wall">
+                    <div class="verse">
+                        "Till we all come in the unity of the faith"
+                        <br>Ephesians 4:13
+                    </div>
+                    <div class="verse">
+                        "By this shall all men know that ye are my disciples"
+                        <br>John 13:35
+                    </div>
+                    <div class="verse">
+                        "Let the word of Christ dwell in you richly"
+                        <br>Colossians 3:16
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gathering Times -->
+    <section class="gathering-times" id="gathering">
+        <div class="section-header">
+            <div class="section-verse">"Not forsaking the assembling of ourselves together"</div>
+            <h2 class="section-title">When We Gather</h2>
+            <p class="section-subtitle">Come Fellowship With Us</p>
+        </div>
+        <div class="times-grid">
+            <div class="time-card fade-in">
+                <div class="time-day">Lord's Day</div>
+                <div class="time-hour">9:00 AM</div>
+                <div class="time-description">
+                    Breaking of Bread & Worship<br>
+                    Ministry of the Word<br>
+                    Sunday School for Children
+                </div>
+                <div class="time-verse">
+                    "This do in remembrance of me" - Luke 22:19
+                </div>
+            </div>
+            <div class="time-card fade-in">
+                <div class="time-day">Friday</div>
+                <div class="time-hour">Morning</div>
+                <div class="time-description">
+                    Sisters' Prayer Meeting<br>
+                    Bible Study & Fellowship<br>
+                    Women's Ministry
+                </div>
+                <div class="time-verse">
+                    "She openeth her mouth with wisdom" - Proverbs 31:26
+                </div>
+            </div>
+            <div class="time-card fade-in">
+                <div class="time-day">Saturday</div>
+                <div class="time-hour">7:00 PM</div>
+                <div class="time-description">
+                    Prayer Meeting<br>
+                    Bible Study<br>
+                    Fellowship Hour
+                </div>
+                <div class="time-verse">
+                    "Study to shew thyself approved unto God" - 2 Timothy 2:15
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Through Scripture -->
+    <section class="ministries-scripture" id="ministries">
+        <div class="section-header">
+            <div class="section-verse">"As every man hath received the gift, even so minister"</div>
+            <h2 class="section-title">Ministries of the Assembly</h2>
+            <p class="section-subtitle">Serving One Another in Love</p>
+        </div>
+        <div class="ministries-mosaic">
+            <div class="ministry-panel fade-in">
+                <div class="ministry-scripture">
+                    "Suffer the little children to come unto me, and forbid them not"
+                </div>
+                <h3 class="ministry-name">Children's Ministry</h3>
+                <p class="ministry-description">
+                    Sunday School following the morning gathering, teaching young hearts 
+                    the precious truths of God's Word through Bible lessons suited for every age.
+                </p>
+            </div>
+            <div class="ministry-panel fade-in">
+                <div class="ministry-scripture">
+                    "Teach the young women to be sober, to love their husbands, to love their children"
+                </div>
+                <h3 class="ministry-name">Women's Fellowship</h3>
+                <p class="ministry-description">
+                    Friday morning gatherings where sisters in Christ unite in prayer, 
+                    delve into Scripture, and encourage one another in their walk with the Lord.
+                </p>
+            </div>
+            <div class="ministry-panel fade-in">
+                <div class="ministry-scripture">
+                    "Thy word have I hid in mine heart, that I might not sin against thee"
+                </div>
+                <h3 class="ministry-name">Bible Study</h3>
+                <p class="ministry-description">
+                    Saturday evening systematic study through books of the Bible, 
+                    seeking to understand and apply God's truth to our daily lives.
+                </p>
+            </div>
+            <div class="ministry-panel fade-in">
+                <div class="ministry-scripture">
+                    "The effectual fervent prayer of a righteous man availeth much"
+                </div>
+                <h3 class="ministry-name">Prayer Ministry</h3>
+                <p class="ministry-description">
+                    Regular prayer gatherings interceding for the assembly, our community, 
+                    missionaries, and the global body of Christ.
+                </p>
+            </div>
+            <div class="ministry-panel fade-in">
+                <div class="ministry-scripture">
+                    "Speaking to yourselves in psalms and hymns and spiritual songs"
+                </div>
+                <h3 class="ministry-name">Worship in Song</h3>
+                <p class="ministry-description">
+                    Leading the congregation in heartfelt worship through hymns and spiritual songs 
+                    in both English and Malayalam languages.
+                </p>
+            </div>
+            <div class="ministry-panel fade-in">
+                <div class="ministry-scripture">
+                    "Go ye into all the world, and preach the gospel to every creature"
+                </div>
+                <h3 class="ministry-name">Gospel Outreach</h3>
+                <p class="ministry-description">
+                    Sharing the good news of salvation with our Stafford community and 
+                    supporting missionary work locally and globally.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servant Leadership -->
+    <section class="servant-leadership" id="leadership">
+        <div class="section-header">
+            <div class="section-verse">"Take heed therefore unto yourselves, and to all the flock"</div>
+            <h2 class="section-title">Servant Leadership</h2>
+            <p class="section-subtitle">Shepherding the Flock of God</p>
+        </div>
+        <div class="leadership-presentation fade-in">
+            <div class="leader-verse-intro">
+                "The elders which are among you I exhort, who am also an elder... 
+                Feed the flock of God which is among you, taking the oversight thereof, 
+                not by constraint, but willingly" - 1 Peter 5:1-2
+            </div>
+            <h3 class="leader-name">Dr. Mathew Vairamon</h3>
+            <p class="leader-role">Founder & Elder</p>
+            <div class="leader-testimony">
+                Called by the Lord to establish this assembly in November 2014, Dr. Vairamon 
+                has faithfully served the Malayalam-speaking believers in Houston. His burden 
+                for the spiritual growth of Indian Brethren families has been the foundation 
+                of this fellowship. Beginning with one family gathering for prayer, the Lord 
+                has used his ministry to build a congregation that stands on the authority of 
+                Scripture and the simplicity of New Testament worship. The assembly continues 
+                to grow under his care, bridging generations through bilingual ministry and 
+                maintaining the biblical pattern of gathering established by the early church.
+            </div>
+        </div>
+    </section>
+
+    <!-- Beliefs Foundation -->
+    <section class="beliefs-foundation" id="beliefs">
+        <div class="section-header">
+            <div class="section-verse" style="color: var(--wheat);">
+                "Earnestly contend for the faith which was once delivered unto the saints"
+            </div>
+            <h2 class="section-title" style="color: var(--pure-white);">What We Believe</h2>
+            <p class="section-subtitle" style="color: var(--wheat);">Standing on the Foundation of Scripture</p>
+        </div>
+        <div class="beliefs-content">
+            <div class="belief-statements">
+                <div class="belief-card fade-in">
+                    <h3 class="belief-title">The Holy Scriptures</h3>
+                    <p class="belief-verse">
+                        "All scripture is given by inspiration of God" - 2 Timothy 3:16
+                    </p>
+                </div>
+                <div class="belief-card fade-in">
+                    <h3 class="belief-title">The Lord's Supper</h3>
+                    <p class="belief-verse">
+                        "This do in remembrance of me" - 1 Corinthians 11:24
+                    </p>
+                </div>
+                <div class="belief-card fade-in">
+                    <h3 class="belief-title">Believer's Baptism</h3>
+                    <p class="belief-verse">
+                        "Buried with him in baptism" - Colossians 2:12
+                    </p>
+                </div>
+                <div class="belief-card fade-in">
+                    <h3 class="belief-title">Priesthood of Believers</h3>
+                    <p class="belief-verse">
+                        "Ye are a royal priesthood" - 1 Peter 2:9
+                    </p>
+                </div>
+                <div class="belief-card fade-in">
+                    <h3 class="belief-title">The Church</h3>
+                    <p class="belief-verse">
+                        "Upon this rock I will build my church" - Matthew 16:18
+                    </p>
+                </div>
+                <div class="belief-card fade-in">
+                    <h3 class="belief-title">Christ's Return</h3>
+                    <p class="belief-verse">
+                        "I will come again, and receive you" - John 14:3
+                    </p>
+                </div>
+            </div>
+            <a href="https://colonialhills-biblechapel.com/" target="_blank" class="beliefs-link">
+                Learn More About Our Biblical Convictions
+            </a>
+        </div>
+    </section>
+
+    <!-- Open Doors Contact -->
+    <section class="open-doors" id="contact">
+        <div class="section-header">
+            <div class="section-verse">"I have set before thee an open door"</div>
+            <h2 class="section-title">Our Doors Are Open</h2>
+            <p class="section-subtitle">Come and See</p>
+        </div>
+        <div class="contact-layout">
+            <div class="contact-info fade-in">
+                <div class="contact-welcome">
+                    "Come unto me, all ye that labour and are heavy laden, and I will give you rest"
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-label">Gathering Place</div>
+                    <div class="contact-value">
+                        10502 Altonbury Lane<br>
+                        Houston, TX 77031<br>
+                        (Border of Stafford City)
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-label">Contact</div>
+                    <div class="contact-value">
+                        <a href="tel:281-857-7538">281-857-7538</a>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-label">Lord's Day Gathering</div>
+                    <div class="contact-value">
+                        Sunday 9:00 AM<br>
+                        Breaking of Bread & Ministry
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-label">Mid-Week Gatherings</div>
+                    <div class="contact-value">
+                        Friday Morning - Sisters' Meeting<br>
+                        Saturday 7:00 PM - Prayer & Bible Study
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-label">Languages</div>
+                    <div class="contact-value">
+                        English & Malayalam
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value">
+                        <a href="#">www.staffordbiblechapel.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container fade-in">
+                <iframe 
+                    class="map-frame"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.5!2d-95.6!3d29.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDM2JzAwLjAiTiA5NcKwMzYnMDAuMCJX!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Foundation -->
+    <footer class="footer-foundation">
+        <div class="footer-verse">
+            "And the Word was made flesh, and dwelt among us"
+        </div>
+        <span class="footer-verse-ref">John 1:14</span>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Stafford Bible Chapel</h4>
+                <p>
+                    An assembly of believers gathering in the name of our 
+                    Lord Jesus Christ, following the New Testament pattern 
+                    of worship and fellowship.
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>Our Gatherings</h4>
+                <ul>
+                    <li>Sunday: 9:00 AM</li>
+                    <li>Friday: Morning (Sisters)</li>
+                    <li>Saturday: 7:00 PM</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Location</h4>
+                <p>
+                    10502 Altonbury Lane<br>
+                    Houston, TX 77031<br>
+                    Phone: 281-857-7538
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>About</h4>
+                <p>
+                    Indian Brethren Assembly<br>
+                    Founded November 2014<br>
+                    Dr. Mathew Vairamon
+                </p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2024 Stafford Bible Chapel. "Jesus Christ the same yesterday, and to day, and for ever." - Hebrews 13:8
+        </div>
+    </footer>
+
+    <script>
+        // Scripture-based loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Header scroll effect - subtle
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Reveal on scroll - gentle
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Rotating Scripture verses
+        const verses = [
+            {
+                text: "For where two or three are gathered together in my name, there am I in the midst of them.",
+                reference: "Matthew 18:20"
+            },
+            {
+                text: "They continued stedfastly in the apostles' doctrine and fellowship, and in breaking of bread, and in prayers.",
+                reference: "Acts 2:42"
+            },
+            {
+                text: "Not forsaking the assembling of ourselves together, as the manner of some is.",
+                reference: "Hebrews 10:25"
+            },
+            {
+                text: "Let the word of Christ dwell in you richly in all wisdom.",
+                reference: "Colossians 3:16"
+            },
+            {
+                text: "Till we all come in the unity of the faith, and of the knowledge of the Son of God.",
+                reference: "Ephesians 4:13"
+            }
+        ];
+
+        // Create floating verses dynamically
+        function createFloatingVerses() {
+            const container = document.querySelector('.living-verses');
+            if (!container) return;
+            
+            // Create additional floating verses
+            for (let i = 0; i < 10; i++) {
+                const verse = document.createElement('div');
+                verse.className = 'floating-verse';
+                verse.style.left = Math.random() * 100 + '%';
+                verse.style.animationDelay = Math.random() * 20 + 's';
+                verse.style.animationDuration = (15 + Math.random() * 10) + 's';
+                
+                const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+                verse.textContent = randomVerse.reference;
+                
+                container.appendChild(verse);
+            }
+        }
+
+        createFloatingVerses();
+
+        // Add subtle parallax to scripture background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const scriptureBackground = document.querySelector('.scripture-background');
+            if (scriptureBackground) {
+                scriptureBackground.style.transform = `rotate(-5deg) scale(1.2) translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Scripture reading mode toggle (optional enhancement)
+        let readingMode = false;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'r' && e.ctrlKey) {
+                e.preventDefault();
+                readingMode = !readingMode;
+                document.body.classList.toggle('reading-mode');
+            }
+        });
+    </script>
+</body>
+</html>

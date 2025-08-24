@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel - Indian Brethren Church</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #f8f8f8;
+            --accent-gold: #c9a876;
+            --accent-deep: #2c2c54;
+            --text-primary: #2c2c54;
+            --text-light: #6c6c6c;
+            --white: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px var(--shadow-light);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-deep);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--primary-dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: all 3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.1);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-slide.hero1 {
+            background-image: url('Images/Hero1.JPEG');
+        }
+
+        .hero-slide.hero2 {
+            background-image: url('Images/Hero2.JPEG');
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(26, 26, 26, 0.8) 0%,
+                rgba(44, 44, 84, 0.7) 50%,
+                rgba(26, 26, 26, 0.6) 100%
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            z-index: 4;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 5.5rem);
+            font-weight: 300;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 500px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 2rem;
+            border-radius: 20px;
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite, heroCardSlideIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+            max-width: 500px;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.35),
+                0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Floating animation for hero card */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .hero-card-content {
+            text-align: center;
+            color: var(--text-light);
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Navigation Dots */
+        .hero-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 5;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .hero-dot.active {
+            background: var(--accent-gold);
+            transform: scale(1.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+        }
+
+        .btn {
+            padding: 1.2rem 2.8rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(201, 168, 118, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 168, 118, 0.5);
+            background: #d4b185;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 2rem auto 0;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, var(--primary-light) 100%);
+            opacity: 0.5;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text {
+            position: relative;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--white);
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3.5rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.05),
+                0 10px 20px rgba(0, 0, 0, 0.02);
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-deep));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.1),
+                0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .service-icon {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent-gold));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--white);
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .service-time {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--accent-deep);
+            font-size: 0.9rem;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background: var(--white);
+            position: relative;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+
+        .leader-card {
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .leader-photo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leader-photo svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--white);
+        }
+
+        .leader-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .leader-role {
+            color: var(--accent-deep);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .leader-bio {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-deep) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(201, 168, 118, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .contact .section-title,
+        .contact .section-subtitle {
+            color: var(--white);
+        }
+
+        .contact .section-title {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact .section-title::after {
+            background: linear-gradient(90deg, var(--accent-gold), rgba(255, 255, 255, 0.8));
+        }
+
+        .contact .section-subtitle {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .visit-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .visit-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .address-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .address-info > p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .description p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .map-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .map-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .map-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent-gold));
+            text-align: center;
+        }
+
+        .map-header h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .map-container {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-deep) 100%);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .footer-section h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .footer-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .contact-info p,
+        .service-times p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info strong,
+        .service-times strong {
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 0.5rem;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 0.3rem;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--text-primary);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .hero-card {
+                padding: 2.5rem 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+
+            .visit-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .visit-info h3 {
+                font-size: 1.8rem;
+            }
+
+            .address-info h4 {
+                font-size: 1.4rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-quote {
+                max-width: none;
+            }
+
+            .footer {
+                padding: 2.5rem 0 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroTextSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes heroCardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(60px) scale(0.8);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                Stafford Bible Chapel
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Worship</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Visit Us</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-slide hero1"></div>
+            <div class="hero-slide hero2"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>A Place of <br>Truth & Fellowship</h1>
+                <p class="subtitle">Indian Brethren Church</p>
+                <p class="description">
+                    Founded in 2014, we are a Christ-centered community devoted to the faithful study of 
+                    God's Word, authentic worship, and genuine Christian fellowship in Stafford, Texas.
+                </p>
+                <div class="btn-group">
+                    <a href="#services" class="btn btn-primary">Join Our Worship</a>
+                    <a href="#about" class="btn btn-outline">Discover More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <h3>Welcome!</h3>
+                    <div class="hero-card-content">
+                        <p>We warmly welcome you to our fellowship of believers who gather in the name of the Lord Jesus Christ. We are simply a community of Christians devoted to honoring God's Word as our final authority for faith and practice and to growing together in the grace and knowledge of Christ. Our desire is to worship God in spirit and in truth, following the pattern of the New Testament church through teaching, fellowship, breaking of bread, and prayer, as we encourage one another toward spiritual maturity in love.</p>
+                        <p>All ages are cherished here, and we rejoice to include children as an integral part of our church family – echoing Jesus' own heart when He said, "Whoever welcomes one of these little children in My name welcomes Me." With open arms and reverent hearts, we invite you to join us as we seek to exalt the Lord Jesus Christ and be built up together in His grace and truth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <div class="hero-dot" data-slide="0"></div>
+            <div class="hero-dot" data-slide="1"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Foundation</h2>
+                <p class="section-subtitle">
+                    Built upon the unchanging Word of God and the rich heritage of the Open Brethren movement
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>A Journey of Faith</h3>
+                    <p>
+                        Stafford Bible Chapel began in November 2014 through the vision of Dr. Mathew Vairamon, 
+                        starting humbly in a family home and growing into a thriving community of believers. 
+                        From Murphy Road to our current location at 10502 Altonbury Lane, God has been faithful 
+                        in establishing this work.
+                    </p>
+                    <p>
+                        As an Indian Brethren Church, we cherish the simplicity of New Testament Christianity. 
+                        We gather without hierarchical structures, honoring the priesthood of all believers while 
+                        being led by godly elders. Our worship is characterized by reverence, authenticity, and 
+                        the centrality of Christ.
+                    </p>
+                    <p>
+                        Located in the heart of Stafford—the vibrant center of Houston's Malayalee community—
+                        we serve families from diverse backgrounds with services in both English and Malayalam, 
+                        creating a bridge between traditional faith and contemporary life.
+                    </p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.438 6.76c-.285.382-.507.88-.629 1.458-.13.562-.157 1.245-.157 1.921 0 .66.021 1.347.171 1.91.122.578.344 1.076.629 1.458.285.383.695.645 1.034.945.35.292.747.474 1.091.692.342.228.71.324 1.028.466.322.125.611.262.882.312.265.067.498.123.689.171.379.092.597.144.597.144l.514-1.93c0 0-.172-.072-.474-.197-.149-.062-.331-.136-.539-.222-.216-.07-.418-.217-.65-.35-.222-.148-.501-.253-.714-.463-.217-.201-.491-.362-.692-.604-.192-.249-.453-.446-.601-.737-.177-.269-.355-.535-.469-.844-.114-.212-.185-.448-.254-.68.213.032.427.065.65.065 1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3c0-2.193 1.807-4 4-4s4 1.807 4 4c0 1.654-1.346 3-3 3z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Scripture-Centered</div>
+                        <div class="feature-desc">The Bible is our sole authority for faith and practice</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Christ-Focused</div>
+                        <div class="feature-desc">Every gathering centers on the person and work of Jesus</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Spirit-Led</div>
+                        <div class="feature-desc">Relying on the Holy Spirit's guidance in all things</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                        </div>
+                        <div class="feature-title">Community-Minded</div>
+                        <div class="feature-desc">Building authentic relationships through Christ's love</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Worship & Fellowship</h2>
+                <p class="section-subtitle">
+                    Gather with us throughout the week for worship, prayer, and the study of God's Word
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Sunday Morning Worship</h3>
+                    <p>
+                        Our primary gathering where we break bread in remembrance of our Lord, 
+                        engage in corporate worship, and receive exposition from God's Word in 
+                        the traditional Brethren manner.
+                    </p>
+                    <div class="service-time">Sundays at 9:00 AM</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Sisters' Fellowship</h3>
+                    <p>
+                        A special time for the ladies of our church to gather for prayer, 
+                        encouragement, and Bible study, strengthening the bonds of Christian 
+                        sisterhood and mutual support.
+                    </p>
+                    <div class="service-time">Fridays - Morning</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Prayer & Bible Study</h3>
+                    <p>
+                        Mid-week gathering focused on intercession and systematic study of 
+                        Scripture, where believers come together to grow in knowledge and 
+                        deepen their walk with Christ.
+                    </p>
+                    <div class="service-time">Saturdays at 7:00 PM</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6zm0 2C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm1 9.11V14h2v2c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1v-2h2v-.89c-1.17-.41-2-1.52-2-2.83V8h2v2.28c0 .61.49 1.11 1.1 1.11.61 0 1.1-.49 1.1-1.11V8h2v2.28c0 1.31-.83 2.42-2 2.83z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Children's Ministry</h3>
+                    <p>
+                        Age-appropriate Bible teaching and Christian education for our young ones, 
+                        nurturing the next generation in the faith and helping them develop a 
+                        personal relationship with Jesus Christ.
+                    </p>
+                    <div class="service-time">Sundays after Morning Worship</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="leadership section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shepherding Leadership</h2>
+                <p class="section-subtitle">
+                    Faithful servants committed to shepherding God's people with humility and wisdom
+                </p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="leader-name">Dr. Mathew Vairamon</h3>
+                    <p class="leader-role">Founding Elder</p>
+                    <p class="leader-bio">
+                        By God's grace, Dr. Vairamon pioneered this work in 2014, beginning with 
+                        a burden to establish a New Testament church that would serve the growing 
+                        Indian community in Stafford with faithfulness to Scripture.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="leader-name">Church Eldership</h3>
+                    <p class="leader-role">Pastoral Oversight</p>
+                    <p class="leader-bio">
+                        Following the Biblical pattern of Acts 14:23, our church is guided by 
+                        a plurality of elders who provide spiritual oversight, teaching, and 
+                        pastoral care to the congregation.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2zM12 6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="leader-name">Servant Leadership</h3>
+                    <p class="leader-role">Ministry Team</p>
+                    <p class="leader-bio">
+                        In keeping with the priesthood of all believers, various members serve 
+                        in different capacities—from children's ministry to hospitality—each 
+                        using their gifts for the edification of the body.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Come & Worship With Us</h2>
+                <p class="section-subtitle">
+                    You are warmly invited to join our fellowship and experience authentic Christian community
+                </p>
+            </div>
+            <div class="visit-content">
+                <div class="visit-info">
+                    <h3>Visit Our Chapel</h3>
+                    <div class="address-info">
+                        <h4>10502 Altonbury Lane</h4>
+                        <p>Houston, TX 77031 (Stafford Area)</p>
+                        <div class="description">
+                            <p>Located in the heart of Stafford's vibrant community, our chapel welcomes all who seek to worship in spirit and truth. We gather as a simple New Testament church, following the pattern of the early believers in teaching, fellowship, breaking of bread, and prayer.</p>
+                            <p>Whether you're visiting for the first time or looking for a church home, you'll find a warm welcome and authentic Christian fellowship here.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-card">
+                    <div class="map-header">
+                        <h4>Find Us Here</h4>
+                    </div>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3462.8447947547877!2d-95.55887908489084!3d29.632018681970736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640dd3e9b7f3f3f%3A0x5f7f7f7f7f7f7f7f!2s10502%20Altonbury%20Ln%2C%20Houston%2C%20TX%2077031%2C%20USA!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Stafford Bible Chapel</h4>
+                    <p class="footer-quote">
+                        "That they all may be one; as thou, Father, art in me, and I in thee, that they also may be one in us"
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h5>Quick Links</h5>
+                    <div class="nav-links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#services">Worship</a>
+                        <a href="#leadership">Leadership</a>
+                        <a href="#contact">Visit Us</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h5>Service Times</h5>
+                    <div class="service-times">
+                        <p><strong>Sunday Worship:</strong> 9:00 AM</p>
+                        <p><strong>Saturday Prayer & Study:</strong> 7:00 PM</p>
+                        <p><strong>Friday Sisters' Meeting:</strong> Morning</p>
+                        <p><strong>Languages:</strong> English & Malayalam</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h5>Contact Us</h5>
+                    <div class="contact-info">
+                        <p><strong>Address:</strong><br>10502 Altonbury Lane<br>Houston, TX 77031</p>
+                        <p><strong>Phone:</strong> (281) 857-7538</p>
+                        <p><strong>Email:</strong> info@staffordbiblechapel.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stafford Bible Chapel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.service-card, .leader-card, .contact-item, .feature-item, .about-text');
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Hero Slider
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Initialize first slide
+        function initHeroSlider() {
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+                dots[0].classList.add('active');
+            }
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Initialize hero slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initHeroSlider();
+        });
+    </script>
+</body>
+</html>
