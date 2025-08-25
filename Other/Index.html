@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stafford Bible Chapel - Indian Brethren Church</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #f8f8f8;
+            --accent-gold: #c9a876;
+            --accent-deep: #2c2c54;
+            --text-primary: #2c2c54;
+            --text-light: #6c6c6c;
+            --white: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 0;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px var(--shadow-light);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-deep);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--primary-dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: all 3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.1) rotate(1deg);
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            filter: brightness(1) contrast(1);
+        }
+
+        .hero-slide.hero1 {
+            background-image: url('Images/Hero1.JPEG');
+        }
+
+        .hero-slide.hero2 {
+            background-image: url('Images/Hero2.JPEG');
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(26, 26, 26, 0.7) 0%,
+                rgba(44, 44, 84, 0.6) 50%,
+                rgba(201, 168, 118, 0.4) 100%
+            );
+            z-index: 2;
+            animation: overlayFadeIn 2s ease-out 0.5s both;
+        }
+
+        @keyframes overlayFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(45deg, #fff 25%, transparent 25%),
+                linear-gradient(-45deg, #fff 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #fff 75%),
+                linear-gradient(-45deg, transparent 75%, #fff 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            z-index: 3;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            z-index: 4;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 5.5rem);
+            font-weight: 300;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 500px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.2),
+                0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: rotate(-2deg);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.3),
+                0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating animation for hero card */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-2deg);
+            }
+        }
+
+        .hero-card {
+            animation: float 6s ease-in-out infinite, heroCardSlideIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .hero-card-content {
+            text-align: center;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Hero Navigation Dots */
+        .hero-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 5;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .hero-dot.active {
+            background: var(--accent-gold);
+            transform: scale(1.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-deep), var(--accent-gold));
+            color: var(--white);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 44, 84, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-deep);
+            border: 2px solid var(--accent-deep);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-deep);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 2rem auto 0;
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, var(--primary-light) 100%);
+            opacity: 0.5;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text {
+            position: relative;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 3px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3.5rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.05),
+                0 10px 20px rgba(0, 0, 0, 0.02);
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-deep));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.1),
+                0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .service-icon {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent-gold));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 8px;
+            opacity: 0.9;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .service-time {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--accent-deep);
+            font-size: 0.9rem;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background: var(--white);
+            position: relative;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+
+        .leader-card {
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            transition: transform 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .leader-photo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leader-photo::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .leader-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .leader-role {
+            color: var(--accent-deep);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .leader-bio {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-deep) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(201, 168, 118, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .contact .section-title,
+        .contact .section-subtitle {
+            color: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-gold), rgba(255, 255, 255, 0.2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .contact-icon::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--white);
+            border-radius: 6px;
+            opacity: 0.9;
+        }
+
+        .contact-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .hero-card {
+                transform: none;
+                padding: 2.5rem 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroTextSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes heroCardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(60px) rotate(-2deg) scale(0.8);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(-2deg) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Stafford Bible Chapel</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Worship</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Visit Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-slide hero1"></div>
+            <div class="hero-slide hero2"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>A Place of <br>Truth & Fellowship</h1>
+                <p class="subtitle">Indian Brethren Church</p>
+                <p class="description">
+                    Founded in 2014, we are a Christ-centered community devoted to the faithful study of 
+                    God's Word, authentic worship, and genuine Christian fellowship in Stafford, Texas.
+                </p>
+                <div class="btn-group">
+                    <a href="#services" class="btn btn-primary">Join Our Worship</a>
+                    <a href="#about" class="btn btn-outline">Discover More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <h3>Welcome to Our Family</h3>
+                    <div class="hero-card-content">
+                        <p>Experience authentic worship in the Open Brethren tradition, where every believer is valued and Scripture is our foundation. Join us for meaningful fellowship that spans cultures and generations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <div class="hero-dot" data-slide="0"></div>
+            <div class="hero-dot" data-slide="1"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Foundation</h2>
+                <p class="section-subtitle">
+                    Built upon the unchanging Word of God and the rich heritage of the Open Brethren movement
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>A Journey of Faith</h3>
+                    <p>
+                        Stafford Bible Chapel began in November 2014 through the vision of Dr. Mathew Vairamon, 
+                        starting humbly in a family home and growing into a thriving community of believers. 
+                        From Murphy Road to our current location at 10502 Altonbury Lane, God has been faithful 
+                        in establishing this work.
+                    </p>
+                    <p>
+                        As an Indian Brethren Church, we cherish the simplicity of New Testament Christianity. 
+                        We gather without hierarchical structures, honoring the priesthood of all believers while 
+                        being led by godly elders. Our worship is characterized by reverence, authenticity, and 
+                        the centrality of Christ.
+                    </p>
+                    <p>
+                        Located in the heart of Stafford—the vibrant center of Houston's Malayalee community—
+                        we serve families from diverse backgrounds with services in both English and Malayalam, 
+                        creating a bridge between traditional faith and contemporary life.
+                    </p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <div class="feature-title">Scripture-Centered</div>
+                        <div class="feature-desc">The Bible is our sole authority for faith and practice</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <div class="feature-title">Christ-Focused</div>
+                        <div class="feature-desc">Every gathering centers on the person and work of Jesus</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <div class="feature-title">Spirit-Led</div>
+                        <div class="feature-desc">Relying on the Holy Spirit's guidance in all things</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"></div>
+                        <div class="feature-title">Community-Minded</div>
+                        <div class="feature-desc">Building authentic relationships through Christ's love</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Worship & Fellowship</h2>
+                <p class="section-subtitle">
+                    Gather with us throughout the week for worship, prayer, and the study of God's Word
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon"></div>
+                    </div>
+                    <h3>Sunday Morning Worship</h3>
+                    <p>
+                        Our primary gathering where we break bread in remembrance of our Lord, 
+                        engage in corporate worship, and receive exposition from God's Word in 
+                        the traditional Brethren manner.
+                    </p>
+                    <div class="service-time">Sundays at 9:00 AM</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon"></div>
+                    </div>
+                    <h3>Sisters' Fellowship</h3>
+                    <p>
+                        A special time for the ladies of our church to gather for prayer, 
+                        encouragement, and Bible study, strengthening the bonds of Christian 
+                        sisterhood and mutual support.
+                    </p>
+                    <div class="service-time">Fridays - Morning</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon"></div>
+                    </div>
+                    <h3>Prayer & Bible Study</h3>
+                    <p>
+                        Mid-week gathering focused on intercession and systematic study of 
+                        Scripture, where believers come together to grow in knowledge and 
+                        deepen their walk with Christ.
+                    </p>
+                    <div class="service-time">Saturdays at 7:00 PM</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <div class="service-icon"></div>
+                    </div>
+                    <h3>Children's Ministry</h3>
+                    <p>
+                        Age-appropriate Bible teaching and Christian education for our young ones, 
+                        nurturing the next generation in the faith and helping them develop a 
+                        personal relationship with Jesus Christ.
+                    </p>
+                    <div class="service-time">Sundays after Morning Worship</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="leadership section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shepherding Leadership</h2>
+                <p class="section-subtitle">
+                    Faithful servants committed to shepherding God's people with humility and wisdom
+                </p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="leader-photo"></div>
+                    <h3 class="leader-name">Dr. Mathew Vairamon</h3>
+                    <p class="leader-role">Founding Elder</p>
+                    <p class="leader-bio">
+                        By God's grace, Dr. Vairamon pioneered this work in 2014, beginning with 
+                        a burden to establish a New Testament church that would serve the growing 
+                        Indian community in Stafford with faithfulness to Scripture.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo"></div>
+                    <h3 class="leader-name">Church Eldership</h3>
+                    <p class="leader-role">Pastoral Oversight</p>
+                    <p class="leader-bio">
+                        Following the Biblical pattern of Acts 14:23, our church is guided by 
+                        a plurality of elders who provide spiritual oversight, teaching, and 
+                        pastoral care to the congregation.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo"></div>
+                    <h3 class="leader-name">Servant Leadership</h3>
+                    <p class="leader-role">Ministry Team</p>
+                    <p class="leader-bio">
+                        In keeping with the priesthood of all believers, various members serve 
+                        in different capacities—from children's ministry to hospitality—each 
+                        using their gifts for the edification of the body.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Come & Worship With Us</h2>
+                <p class="section-subtitle">
+                    You are warmly invited to join our fellowship and experience authentic Christian community
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon"></div>
+                    <h3>Our Location</h3>
+                    <p>
+                        10502 Altonbury Lane<br>
+                        Houston, TX 77031<br>
+                        (Stafford Area)
+                    </p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"></div>
+                    <h3>Service Times</h3>
+                    <p>
+                        Sunday Worship: 9:00 AM<br>
+                        Friday Sister's Meeting: Morning<br>
+                        Saturday Prayer & Study: 7:00 PM
+                    </p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"></div>
+                    <h3>Connect With Us</h3>
+                    <p>
+                        Phone: (281) 857-7538<br>
+                        Web: staffordbiblechapel.com<br>
+                        Languages: English & Malayalam
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-quote">
+                "That they all may be one; as thou, Father, art in me, and I in thee, that they also may be one in us"
+            </p>
+            <p>&copy; 2024 Stafford Bible Chapel. All rights reserved.</p>
+            <p>A Christ-centered fellowship in the Open Brethren tradition</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.service-card, .leader-card, .contact-item, .feature-item, .about-text');
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Hero Slider
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Initialize first slide
+        function initHeroSlider() {
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+                dots[0].classList.add('active');
+            }
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Initialize hero slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initHeroSlider();
+            
+            // Mouse parallax effect for hero section
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+            
+            hero.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { innerWidth, innerHeight } = window;
+                
+                const x = (clientX - innerWidth / 2) / innerWidth;
+                const y = (clientY - innerHeight / 2) / innerHeight;
+                
+                heroContent.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            });
+            
+            hero.addEventListener('mouseleave', () => {
+                heroContent.style.transform = 'translate(0, 0)';
+            });
+        });
+    </script>
+</body>
+</html>

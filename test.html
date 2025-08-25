@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stafford Bible Chapel - Indian Brethren Assembly</title>
+    <title>Stafford Bible Chapel - Indian Brethren Church</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -683,81 +683,43 @@
             line-height: 1.7;
         }
 
-        /* Statement of Faith Section - Accordion Redesign */
+        /* Statement of Faith Section - Redesigned */
         .faith {
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
         }
         
-        .faith-accordion {
-            max-width: 900px;
-            margin: 0 auto;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px var(--shadow-light);
+        .faith-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
         }
 
-        .accordion-item {
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .accordion-item:last-child {
-            border-bottom: none;
-        }
-
-        .accordion-header {
+        .faith-item {
             background: var(--white);
-            width: 100%;
-            border: none;
-            padding: 1.8rem 2rem;
-            text-align: left;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .accordion-header:hover {
-            background-color: #f9f9f9;
-        }
-
-        .accordion-header.active {
-            background-color: #f5f5f5;
-            color: var(--accent-deep);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border-left: 4px solid var(--accent-deep);
+            transition: all 0.3s ease;
         }
         
-        .accordion-icon {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            stroke: var(--accent-gold);
-            stroke-width: 2;
+        .faith-item:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--accent-gold);
         }
 
-        .accordion-header.active .accordion-icon {
-            transform: rotate(45deg);
-            stroke: var(--accent-deep);
+        .faith-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 400;
         }
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: var(--white);
-        }
-
-        .accordion-content-inner {
-            padding: 0 2rem 2rem 2rem;
+        .faith-item p {
             color: var(--text-light);
             line-height: 1.8;
-            font-size: 1.05rem;
-            border-top: 1px solid #e0e0e0;
-            margin: 0 2rem;
+            font-size: 1rem;
         }
 
         /* Ministry Focus Section */
@@ -1218,7 +1180,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>A Place of <br>Truth & Fellowship</h1>
-                <p class="subtitle">Indian Brethren Assembly</p>
+                <p class="subtitle">Indian Brethren Church</p>
                 <p class="description">
                     Founded in 2014, we are a Christ-centered community devoted to the faithful study of 
                     God's Word, authentic worship, and genuine Christian fellowship in Stafford, Texas.
@@ -1263,7 +1225,7 @@
                         in establishing this work.
                     </p>
                     <p>
-                        As an Indian Brethren Assembly, we cherish the simplicity of New Testament Christianity. 
+                        As an Indian Brethren Church, we cherish the simplicity of New Testament Christianity. 
                         We gather without hierarchical structures, honoring the priesthood of all believers while 
                         being led by godly elders. Our worship is characterized by reverence, authenticity, and 
                         the centrality of Christ.
@@ -1427,7 +1389,7 @@
                     <h3 class="leader-name">Church Eldership</h3>
                     <p class="leader-role">Pastoral Oversight</p>
                     <p class="leader-bio">
-                        Following the Biblical pattern of Acts 14:23, our Assembly is guided by 
+                        Following the Biblical pattern of Acts 14:23, our church is guided by 
                         a plurality of elders who provide spiritual oversight, teaching, and 
                         pastoral care to the congregation.
                     </p>
@@ -1455,99 +1417,36 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Statement of Faith</h2>
-                <p class="section-subtitle">The foundational biblical truths upon which our Assembly is built</p>
+                <p class="section-subtitle">The foundational biblical truths upon which our church is built</p>
             </div>
-            <div class="faith-accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        1. The Bible
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe the Holy Scriptures of the Old and New Testaments are the inspired and infallible Word of God. The Bible is completely trustworthy and is the final authority in all matters of faith and daily life.</p>
-                        </div>
-                    </div>
+            <div class="faith-grid">
+                <div class="faith-item">
+                    <h3>1. The Bible</h3>
+                    <p>We believe the Holy Scriptures of the Old and New Testaments are the inspired and infallible Word of God. The Bible is completely trustworthy and is the final authority in all matters of faith and daily life.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        2. Salvation
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe all people are sinners and in need of God’s salvation. Salvation is a gift of God’s grace, received through personal faith in Jesus Christ alone and not by any human works or merit. Through Christ’s atoning death on the cross, His burial, and His resurrection, sinful humans can be forgiven and reconciled to God.</p>
-                        </div>
-                    </div>
+                <div class="faith-item">
+                    <h3>2. Salvation</h3>
+                    <p>We believe all people are sinners and in need of God’s salvation. Salvation is a gift of God’s grace, received through personal faith in Jesus Christ alone and not by any human works or merit. Through Christ’s atoning death on the cross, His burial, and His resurrection, sinful humans can be forgiven and reconciled to God.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        3. Jesus Christ
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe that Jesus Christ is the eternal Son of God who became fully human while remaining fully divine. Conceived by the Holy Spirit and born of the virgin Mary, He lived a sinless life on earth. Jesus died on the cross as a perfect sacrifice for our sins, rose bodily from the dead, and ascended to heaven, where He reigns as Lord and Savior.</p>
-                        </div>
-                    </div>
+                <div class="faith-item">
+                    <h3>3. Jesus Christ</h3>
+                    <p>We believe that Jesus Christ is the eternal Son of God who became fully human while remaining fully divine. Conceived by the Holy Spirit and born of the virgin Mary, He lived a sinless life on earth. Jesus died on the cross as a perfect sacrifice for our sins, rose bodily from the dead, and ascended to heaven, where He reigns as Lord and Savior.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        4. The Holy Spirit
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe the Holy Spirit is God at work in the world and in the believer. The Holy Spirit convicts the world of sin, gives new life to those who trust in Christ, and lives in every believer from the moment of salvation. He empowers and guides believers to live godly lives, to understand the Scriptures, and to serve Christ effectively, producing spiritual fruit in them.</p>
-                        </div>
-                    </div>
+                <div class="faith-item">
+                    <h3>4. The Holy Spirit</h3>
+                    <p>We believe the Holy Spirit is God at work in the world and in the believer. The Holy Spirit convicts the world of sin, gives new life to those who trust in Christ, and lives in every believer from the moment of salvation. He empowers and guides believers to live godly lives, to understand the Scriptures, and to serve Christ effectively, producing spiritual fruit in them.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        5. Priesthood of Believers
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe in the priesthood of all true believers in Jesus Christ. Every Christian has direct access to God through Jesus, our Great High Priest, and no special human priesthood or clergy class is needed. All believers are a “royal priesthood” set apart to worship God and to serve one another in love, as each is gifted by the Holy Spirit.</p>
-                        </div>
-                    </div>
+                <div class="faith-item">
+                    <h3>5. Priesthood of Believers</h3>
+                    <p>We believe in the priesthood of all true believers in Jesus Christ. Every Christian has direct access to God through Jesus, our Great High Priest, and no special human priesthood or clergy class is needed. All believers are a “royal priesthood” set apart to worship God and to serve one another in love, as each is gifted by the Holy Spirit.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        6. Return of Christ
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe that Jesus Christ will come again, personally and visibly, as King and Judge of all. We expect the imminent return of our Lord Jesus as He promised. At His coming there will be the resurrection of the dead and the final judgment – bringing everlasting life and joy to those who are saved, and righteous judgment to those who have rejected Christ.</p>
-                        </div>
-                    </div>
+                <div class="faith-item">
+                    <h3>6. Return of Christ</h3>
+                    <p>We believe that Jesus Christ will come again, personally and visibly, as King and Judge of all. We expect the imminent return of our Lord Jesus as He promised. At His coming there will be the resurrection of the dead and the final judgment – bringing everlasting life and joy to those who are saved, and righteous judgment to those who have rejected Christ.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        7. The Assembly
-                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>We believe that the Assembly is the one spiritual Body of Christ, a living community comprising all true believers from every nation and time. Jesus Christ alone is the Head of the Assembly. Local congregations of believers meet together for worship, prayer, the teaching of God’s Word, fellowship, and the observance of baptism and the Lord’s Supper. The Assembly is called to unity in Christ, holiness in life, loving service, and the proclamation of the Gospel to the world.</p>
-                        </div>
-                    </div>
+                <div class="faith-item">
+                    <h3>7. The Church</h3>
+                    <p>We believe that the Church is the one spiritual Body of Christ, a living community comprising all true believers from every nation and time. Jesus Christ alone is the Head of the Church. Local congregations of believers meet together for worship, prayer, the teaching of God’s Word, fellowship, and the observance of baptism and the Lord’s Supper. The Church is called to unity in Christ, holiness in life, loving service, and the proclamation of the Gospel to the world.</p>
                 </div>
             </div>
         </div>
@@ -1569,7 +1468,7 @@
                 </div>
                 <div class="ministry-card">
                     <h3>We Pray</h3>
-                    <p>We need Jesus's help in forgiving one another. To integrate Christian worldviews in our children's lives, we need Jesus's help. So we pray corporately that God will build His Assembly.</p>
+                    <p>We need Jesus's help in forgiving one another. To integrate Christian worldviews in our children's lives, we need Jesus's help. So we pray corporately that God will build His church.</p>
                 </div>
                 <div class="ministry-card">
                     <h3>We Study the Bible</h3>
@@ -1643,6 +1542,7 @@
                         <a href="#leadership">Leadership</a>
                         <a href="#faith">Statement of Faith</a>
                         <a href="#ministry">Ministry Focus</a>
+                        <a href="#contact">Visit Us</a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -1696,7 +1596,7 @@
 
         // Observe elements for animation
         document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.service-card, .leader-card, .contact-item, .feature-item, .about-text, .ministry-card');
+            const elements = document.querySelectorAll('.service-card, .leader-card, .contact-item, .feature-item, .about-text, .ministry-card, .faith-item');
             elements.forEach(el => {
                 observer.observe(el);
             });
@@ -1743,26 +1643,6 @@
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 showSlide(index);
-            });
-        });
-
-        // Statement of Faith Accordion
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', function() {
-                const currentlyActive = document.querySelector('.accordion-header.active');
-                if (currentlyActive && currentlyActive !== this) {
-                    currentlyActive.classList.remove('active');
-                    currentlyActive.nextElementSibling.style.maxHeight = 0;
-                }
-                
-                this.classList.toggle('active');
-                const content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
             });
         });
 
