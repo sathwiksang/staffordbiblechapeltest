@@ -6,7 +6,8 @@
       "Bash(git commit:*)",
       "Bash(git remote add:*)",
       "Bash(git push:*)",
-      "Bash(claude doctor)"
+      "Bash(claude doctor)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []

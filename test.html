@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stafford Bible Chapel - Indian Brethren Church</title>
+    <title>Stafford Bible Chapel - Indian Brethren Assembly</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -17,12 +17,15 @@
             --primary-dark: #1a1a1a;
             --primary-light: #f8f8f8;
             --accent-gold: #c9a876;
+            --accent-gold-light: #e5c89a;
             --accent-deep: #2c2c54;
+            --accent-deep-light: #4a4a7d;
             --text-primary: #2c2c54;
             --text-light: #6c6c6c;
             --white: #ffffff;
             --shadow-light: rgba(0, 0, 0, 0.05);
             --shadow-medium: rgba(0, 0, 0, 0.15);
+            --shadow-heavy: rgba(0, 0, 0, 0.25);
         }
 
         body {
@@ -31,24 +34,34 @@
             color: var(--text-primary);
             overflow-x: hidden;
             background: var(--white);
+            min-width: 320px;
+        }
+        
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Navigation */
+        /* Navigation - Enhanced */
         .navbar {
             position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            padding: 1.2rem 0;
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 0;
             z-index: 1000;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 20px transparent;
         }
 
         .navbar.scrolled {
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px var(--shadow-light);
-            padding: 0.8rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            padding: 0.75rem 0;
         }
 
         .nav-container {
@@ -57,30 +70,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
+            width: 100%;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: var(--text-primary);
             text-decoration: none;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: transform 0.3s ease;
         }
 
-        .logo svg {
-            width: 32px;
-            height: 32px;
+        .logo:hover {
+            transform: translateX(5px);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2.5rem; /* Adjusted gap for new items */
+            gap: 2.2rem;
         }
 
         .nav-menu a {
@@ -99,8 +113,9 @@
             width: 0;
             height: 2px;
             bottom: 0;
-            left: 0;
-            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-deep));
             transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -112,14 +127,18 @@
             color: var(--accent-deep);
         }
 
-        /* Hero Section */
+        /* Hero Section - Completely Redesigned */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             background: var(--primary-dark);
             position: relative;
             display: flex;
             align-items: center;
+            justify-content: center;
             overflow: hidden;
+            width: 100%;
+            padding-top: 80px;
         }
 
         .hero-background {
@@ -166,155 +185,160 @@
             bottom: 0;
             background: linear-gradient(
                 135deg,
-                rgba(26, 26, 26, 0.8) 0%,
-                rgba(44, 44, 84, 0.7) 50%,
-                rgba(26, 26, 26, 0.6) 100%
+                rgba(26, 26, 26, 0.85) 0%,
+                rgba(44, 44, 84, 0.75) 50%,
+                rgba(26, 26, 26, 0.7) 100%
             );
             z-index: 2;
         }
 
+        /* Animated gradient overlay */
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(201, 168, 118, 0.15) 0%, transparent 50%);
+            animation: gradientShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            to {
+                background: radial-gradient(circle at 70% 50%, rgba(201, 168, 118, 0.15) 0%, transparent 50%);
+            }
+        }
+
         .hero-content {
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 3rem;
             z-index: 4;
             position: relative;
         }
 
+        .hero-text {
+            text-align: center;
+            max-width: 900px;
+            animation: heroTextFadeIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+
         .hero-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 5vw, 5.5rem);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
             font-weight: 300;
             color: var(--white);
             margin-bottom: 1.5rem;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text h1 span {
+            display: block;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-top: 0.5rem;
         }
 
         .hero-text .subtitle {
-            font-size: 1.3rem;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--accent-gold-light);
+            margin-bottom: 1.5rem;
             font-weight: 500;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
         }
 
         .hero-text .description {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 500px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-visual {
-            position: relative;
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 2rem 2rem;
+        /* Welcome Card - Completely Redesigned */
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 900px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 
-                0 40px 80px rgba(0, 0, 0, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.15);
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: welcomeSlideUp 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
             position: relative;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: float 6s ease-in-out infinite, heroCardSlideIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
-            max-width: 500px;
+            overflow: hidden;
         }
 
-        .hero-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 50px 100px rgba(0, 0, 0, 0.35),
-                0 25px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Floating animation for hero card */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .hero-card::before {
+        .welcome-section::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0.3;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 168, 118, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
 
-        .hero-card h3 {
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 0.8rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-text {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
             text-align: center;
         }
 
-        .hero-card-content {
-            text-align: center;
-            color: var(--text-light);
-            line-height: 1.4;
-            font-size: 0.9rem;
+        .welcome-text p {
+            margin-bottom: 1.2rem;
         }
 
-        /* Hero Navigation Dots */
-        .hero-nav {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1rem;
-            z-index: 5;
+        .welcome-text p:last-child {
+            margin-bottom: 0;
         }
 
-        .hero-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .hero-dot.active {
-            background: var(--accent-gold);
-            transform: scale(1.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .hero-dot:hover {
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(1.1);
+        /* Highlight Quote */
+        .highlight-quote {
+            font-style: italic;
+            color: var(--accent-gold-light);
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-size: 1.05em;
         }
 
         /* Enhanced Buttons */
@@ -322,29 +346,37 @@
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
-            animation: heroTextSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: buttonsFadeIn 2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+            align-items: stretch;
         }
 
         .btn {
-            padding: 1.2rem 2.8rem;
+            padding: 1rem 2.5rem;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            min-width: 180px;
+            min-height: 60px;
+            text-align: center;
         }
 
         .btn-primary {
-            background: var(--accent-gold);
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
             color: var(--primary-dark);
-            box-shadow: 0 4px 15px rgba(201, 168, 118, 0.3);
+            box-shadow: 0 4px 20px rgba(201, 168, 118, 0.4);
         }
 
         .btn-primary::before {
@@ -364,45 +396,78 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(201, 168, 118, 0.5);
-            background: #d4b185;
+            box-shadow: 0 8px 30px rgba(201, 168, 118, 0.5);
         }
 
         .btn-outline {
             background: transparent;
             color: var(--white);
-            border: 2px solid var(--white);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
         }
 
         .btn-outline:hover {
-            background: var(--white);
-            color: var(--primary-dark);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
         }
 
-        /* Section Styles */
+        /* Hero Navigation Dots - Enhanced */
+        .hero-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 5;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .hero-dot.active {
+            background: var(--accent-gold);
+            transform: scale(1.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
+        }
+
+        /* Section Styles - Enhanced */
         .section {
-            padding: 8rem 0;
+            padding: 6rem 0;
             position: relative;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
+            width: 100%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
             position: relative;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 300;
             color: var(--text-primary);
             margin-bottom: 1.5rem;
@@ -413,44 +478,33 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 3px;
-            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-deep));
             border-radius: 2px;
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 700px;
             margin: 2rem auto 0;
             line-height: 1.7;
         }
 
-        /* About Section */
+        /* About Section - Enhanced */
         .about {
-            background: var(--white);
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
             position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, var(--primary-light) 100%);
-            opacity: 0.5;
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 6rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 2;
@@ -458,58 +512,63 @@
 
         .about-text {
             position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .about-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
             color: var(--text-primary);
             margin-bottom: 2rem;
             font-weight: 400;
         }
 
         .about-text p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
             line-height: 1.8;
             color: var(--text-light);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .about-features {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
             margin-top: 3rem;
         }
 
         .feature-item {
             background: var(--white);
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 15px;
-            border-left: 4px solid var(--accent-gold);
-            box-shadow: 0 10px 30px var(--shadow-light);
-            transition: transform 0.3s ease;
+            border-top: 3px solid var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
         }
 
         .feature-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--accent-gold), var(--accent-deep));
-            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-deep));
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem;
             position: relative;
         }
 
         .feature-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             fill: var(--white);
         }
 
@@ -517,37 +576,38 @@
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .feature-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* Services Section */
+        /* Services Section - Enhanced */
         .services {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+            background: var(--white);
             position: relative;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .service-card {
-            background: var(--white);
-            padding: 3.5rem 2.5rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
+            padding: 2.5rem 2rem;
             border-radius: 20px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.05),
-                0 10px 20px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
             text-align: center;
             position: relative;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card::before {
@@ -556,20 +616,18 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, var(--accent-gold), var(--accent-deep));
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 
-                0 40px 80px rgba(0, 0, 0, 0.1),
-                0 20px 40px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
         }
 
         .service-icon-wrapper {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 2rem;
             position: relative;
         }
@@ -584,6 +642,12 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            transform: rotate(3deg);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(0deg);
         }
 
         .service-icon svg {
@@ -595,57 +659,79 @@
 
         .service-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
             color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         .service-card p {
             color: var(--text-light);
             line-height: 1.7;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
 
         .service-time {
             margin-top: 1.5rem;
-            padding: 1rem;
-            background: var(--primary-light);
-            border-radius: 10px;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-gold);
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+            border-radius: 30px;
             font-weight: 600;
-            color: var(--accent-deep);
+            color: var(--primary-dark);
             font-size: 0.9rem;
+            display: inline-block;
+            min-width: 220px;
+            max-width: 280px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(201, 168, 118, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            line-height: 1.3;
         }
 
-        /* Leadership Section */
+        .service-time:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 168, 118, 0.4);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            flex: 1;
+        }
+
+        /* Leadership Section - Enhanced */
         .leadership {
-            background: var(--white);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
             position: relative;
         }
 
         .leadership-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
         .leader-card {
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
-            padding: 3rem 2rem;
+            background: var(--white);
+            padding: 2.5rem 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 35px var(--shadow-light);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .leader-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
         }
 
         .leader-photo {
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 2rem;
             position: relative;
             overflow: hidden;
@@ -654,6 +740,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .leader-photo svg {
@@ -664,10 +751,10 @@
 
         .leader-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             color: var(--text-primary);
             margin-bottom: 0.5rem;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .leader-role {
@@ -675,96 +762,155 @@
             font-size: 1rem;
             margin-bottom: 1.5rem;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .leader-bio {
             color: var(--text-light);
-            font-size: 0.95rem;
+            font-size: clamp(0.9rem, 1.5vw, 0.95rem);
             line-height: 1.7;
         }
 
-        /* Statement of Faith Section - Redesigned */
+        /* Statement of Faith Section - Enhanced */
         .faith {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
-        }
-        
-        .faith-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .faith-item {
             background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            border-left: 4px solid var(--accent-deep);
-            transition: all 0.3s ease;
         }
         
-        .faith-item:hover {
-            transform: translateY(-5px);
-            border-left-color: var(--accent-gold);
+        .faith-accordion {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
         }
 
-        .faith-item h3 {
+        .accordion-item {
+            background: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            background: var(--white);
+            width: 100%;
+            border: none;
+            padding: 1.5rem 2rem;
+            text-align: left;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 500;
             color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .faith-item p {
+        .accordion-header:hover {
+            background-color: var(--primary-light);
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, var(--primary-light), var(--white));
+            color: var(--accent-deep);
+        }
+        
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            stroke: var(--accent-gold);
+            stroke-width: 2;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(45deg);
+            stroke: var(--accent-deep);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+        }
+
+        .accordion-content-inner {
+            padding: 0 2rem 2rem 2rem;
             color: var(--text-light);
             line-height: 1.8;
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 1.8vw, 1.05rem);
         }
 
-        /* Ministry Focus Section */
+        /* Ministry Focus Section - Enhanced */
         .ministry {
-            background: var(--white);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
         }
 
         .ministry-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .ministry-card {
-            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
-            padding: 2.5rem;
+            background: var(--white);
+            padding: 2rem;
             border-radius: 20px;
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 35px var(--shadow-light);
-            border-top: 4px solid var(--accent-gold);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--accent-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ministry-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-gold-light) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ministry-card:hover::before {
+            opacity: 0.05;
         }
 
         .ministry-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         .ministry-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
             color: var(--text-primary);
             margin-bottom: 1rem;
-            font-weight: 400;
+            font-weight: 500;
+            position: relative;
         }
 
         .ministry-card p {
             color: var(--text-light);
             line-height: 1.7;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            position: relative;
         }
         
-        /* Contact Section */
+        /* Contact Section - Enhanced */
         .contact {
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-deep) 100%);
             color: var(--white);
@@ -789,30 +935,27 @@
             color: var(--white);
         }
 
-        .contact .section-title {
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
         .contact .section-title::after {
             background: linear-gradient(90deg, var(--accent-gold), rgba(255, 255, 255, 0.8));
         }
 
-        .contact .section-subtitle {
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
         .visit-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             position: relative;
             z-index: 2;
         }
 
+        .visit-info {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         .visit-info h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
             color: var(--white);
             margin-bottom: 2rem;
             font-weight: 400;
@@ -821,7 +964,7 @@
 
         .address-info h4 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.4rem, 2.5vw, 1.6rem);
             color: var(--accent-gold);
             margin-bottom: 0.5rem;
             font-weight: 400;
@@ -829,26 +972,26 @@
 
         .address-info > p {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
             margin-bottom: 2rem;
         }
 
         .description p {
             color: rgba(255, 255, 255, 0.85);
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 1.5vw, 1rem);
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
 
         .map-card {
+            max-width: 900px;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 
-                0 40px 80px rgba(0, 0, 0, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
 
@@ -864,14 +1007,14 @@
 
         .map-header h4 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1.2rem, 2vw, 1.3rem);
             color: var(--white);
             margin: 0;
             font-weight: 400;
         }
 
         .map-container {
-            height: 300px;
+            height: 350px;
             overflow: hidden;
         }
 
@@ -881,7 +1024,7 @@
             border: 0;
         }
 
-        /* Footer */
+        /* Footer - Enhanced */
         .footer {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-deep) 100%);
             color: var(--white);
@@ -895,26 +1038,26 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
+            height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.75fr 1fr 1.25fr 1.5fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .footer-section h4 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             color: var(--accent-gold);
             margin-bottom: 1rem;
             font-weight: 400;
@@ -922,7 +1065,7 @@
 
         .footer-section h5 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
+            font-size: clamp(1.1rem, 2vw, 1.2rem);
             color: var(--white);
             margin-bottom: 1rem;
             font-weight: 400;
@@ -930,17 +1073,16 @@
 
         .footer-quote {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
             font-style: italic;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
-            max-width: 400px;
         }
 
         .contact-info p,
         .service-times p {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
             line-height: 1.6;
             margin-bottom: 0.8rem;
         }
@@ -963,10 +1105,9 @@
 
         .footer-bottom p {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
             margin: 0;
         }
-
 
         .nav-links {
             display: flex;
@@ -977,7 +1118,7 @@
         .nav-links a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
             transition: all 0.3s ease;
             position: relative;
             padding-left: 0;
@@ -988,44 +1129,206 @@
             padding-left: 0.5rem;
         }
 
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            left: -0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 1px;
-            background: var(--accent-gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::before {
-            width: 0.3rem;
-        }
-
-        /* Mobile Menu Button */
+        /* Mobile Navigation - Enhanced */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
+            position: relative;
+            z-index: 1001;
+            transition: all 0.3s ease;
         }
 
-        .mobile-menu-btn svg {
+        .hamburger {
             width: 28px;
             height: 28px;
-            fill: var(--text-primary);
+            position: relative;
+            transform: rotate(0deg);
+            transition: .5s ease-in-out;
+            cursor: pointer;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 992px) {
-             .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--text-primary);
+            border-radius: 6px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
         }
-        
+
+        .hamburger span:nth-child(1) {
+            top: 4px;
+        }
+
+        .hamburger span:nth-child(2),
+        .hamburger span:nth-child(3) {
+            top: 12px;
+        }
+
+        .hamburger span:nth-child(4) {
+            top: 20px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            top: 12px;
+            width: 0%;
+            left: 50%;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            transform: rotate(45deg);
+            background: var(--white);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            background: var(--white);
+        }
+
+        .hamburger.active span:nth-child(4) {
+            top: 12px;
+            width: 0%;
+            left: 50%;
+        }
+
+        /* Mobile Navigation Menu - Enhanced */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-deep) 100%);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-content {
+            padding: 5rem 2rem 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .mobile-nav-tagline {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            opacity: 0.9;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+            color: var(--accent-gold);
+        }
+
+        .mobile-nav-links a:hover::before {
+            left: 100%;
+        }
+
+        .mobile-nav-footer {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .mobile-contact-info {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .mobile-contact-info strong {
+            color: var(--accent-gold);
+        }
+
+        /* Mobile Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Responsiveness - Comprehensive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -1035,70 +1338,268 @@
                 display: block;
             }
 
+            .logo {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+            }
+
             .hero-content {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-                text-align: center;
+                padding: 2rem 1rem;
             }
 
-            .hero-visual {
-                height: 400px;
+            .welcome-section {
+                padding: 2rem 1.5rem;
             }
 
-            .hero-card {
-                padding: 2.5rem 2rem;
+            .welcome-title {
+                font-size: 1.6rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 4rem;
+            .welcome-text {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 0.9rem 2rem;
+                font-size: 0.9rem;
+                min-width: 150px;
+                min-height: 55px;
+            }
+
+            .btn-group {
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 4rem 0;
             }
 
             .about-features {
                 grid-template-columns: 1fr;
             }
-            
-            .faith-grid {
+
+            .services-grid,
+            .leadership-grid,
+            .ministry-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .btn-group {
-                justify-content: center;
-            }
-
-            .section {
-                padding: 5rem 0;
+                gap: 1.5rem;
             }
 
             .visit-content {
                 grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .visit-info h3 {
-                font-size: 1.8rem;
-            }
-
-            .address-info h4 {
-                font-size: 1.4rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
                 text-align: center;
             }
 
-            .footer-quote {
-                max-width: none;
+            .map-container {
+                height: 300px;
             }
 
-            .footer {
-                padding: 2.5rem 0 1rem;
+            .service-time {
+                min-width: 200px;
+                max-width: 260px;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 100svh;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .welcome-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .welcome-title {
+                font-size: 1.4rem;
+            }
+
+            .welcome-text {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .highlight-quote {
+                font-size: 0.95rem;
+                padding-left: 0.8rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                min-height: 50px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .service-card,
+            .leader-card,
+            .ministry-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .accordion-header {
+                padding: 1.2rem 1rem;
+                font-size: 1.1rem;
+            }
+
+            .accordion-content-inner {
+                padding: 1rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+
+            .service-time {
+                min-width: 180px;
+                max-width: 240px;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Very Small Devices */
+        @media (max-width: 360px) {
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1rem;
+            }
+
+            .welcome-title {
+                font-size: 1.3rem;
+            }
+
+            .welcome-text {
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+                min-height: 48px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .service-card h3,
+            .ministry-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .leader-name {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Tablet Portrait */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .hero-content {
+                max-width: 720px;
+            }
+
+            .welcome-section {
+                max-width: 700px;
+            }
+
+            .about-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid,
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tablet Landscape & Small Desktop */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .container {
+                max-width: 960px;
+            }
+
+            .hero-content {
+                max-width: 960px;
+            }
+
+            .welcome-section {
+                max-width: 800px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1200px) {
+            .hero-content {
+                max-width: 1100px;
+            }
+
+            .welcome-section {
+                max-width: 900px;
             }
         }
 
         /* Animations */
+        @keyframes heroTextFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes welcomeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes buttonsFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -1110,39 +1611,30 @@
             }
         }
 
-        @keyframes heroTextSlideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-60px);
-                filter: blur(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes heroCardSlideIn {
-            from {
-                opacity: 0;
-                transform: translateX(60px) scale(0.8);
-                filter: blur(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-                filter: blur(0);
-            }
-        }
-
         .fade-in-up {
             animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        /* Print Styles */
+        @media print {
+            .navbar,
+            .hero-nav,
+            .btn-group,
+            .mobile-menu-btn,
+            .mobile-nav,
+            .mobile-nav-overlay {
+                display: none !important;
+            }
+
+            .hero {
+                min-height: auto;
+                background: white;
+                color: black;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
@@ -1162,13 +1654,45 @@
                 <li><a href="#ministry">Ministry</a></li>
                 <li><a href="#contact">Visit Us</a></li>
             </ul>
-            <button class="mobile-menu-btn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                </svg>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-header">
+                <div class="mobile-nav-logo">Stafford Bible Chapel</div>
+                <div class="mobile-nav-tagline">Indian Brethren Assembly</div>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="#home" data-nav="home">Home</a></li>
+                <li><a href="#about" data-nav="about">About</a></li>
+                <li><a href="#services" data-nav="services">Worship</a></li>
+                <li><a href="#leadership" data-nav="leadership">Leadership</a></li>
+                <li><a href="#faith" data-nav="faith">Faith</a></li>
+                <li><a href="#ministry" data-nav="ministry">Ministry</a></li>
+                <li><a href="#contact" data-nav="contact">Visit Us</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+                <div class="mobile-contact-info">
+                    <p><strong>Sunday Worship:</strong> 9:00 AM</p>
+                    <p><strong>Address:</strong> 10502 Altonbury Lane</p>
+                    <p><strong>Phone:</strong> (281) 857-7538</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1179,25 +1703,30 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-text">
-                <h1>A Place of <br>Truth & Fellowship</h1>
-                <p class="subtitle">Indian Brethren Church</p>
+                <h1>A Place of Truth &<span>Fellowship</span></h1>
+                <p class="subtitle">Indian Brethren Assembly</p>
                 <p class="description">
                     Founded in 2014, we are a Christ-centered community devoted to the faithful study of 
                     God's Word, authentic worship, and genuine Christian fellowship in Stafford, Texas.
                 </p>
-                <div class="btn-group">
-                    <a href="#services" class="btn btn-primary">Join Our Worship</a>
-                    <a href="#about" class="btn btn-outline">Discover More</a>
-                </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-card">
-                    <h3>Welcome!</h3>
-                    <div class="hero-card-content">
-                        <p>We warmly welcome you to our fellowship of believers who gather in the name of the Lord Jesus Christ. We are simply a community of Christians devoted to honoring God's Word as our final authority for faith and practice and to growing together in the grace and knowledge of Christ. Our desire is to worship God in spirit and in truth, following the pattern of the New Testament church through teaching, fellowship, breaking of bread, and prayer, as we encourage one another toward spiritual maturity in love.</p>
-                        <p>All ages are cherished here, and we rejoice to include children as an integral part of our church family – echoing Jesus' own heart when He said, "Whoever welcomes one of these little children in My name welcomes Me." With open arms and reverent hearts, we invite you to join us as we seek to exalt the Lord Jesus Christ and be built up together in His grace and truth.</p>
+
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h2 class="welcome-title">Welcome Home!</h2>
+                    <div class="welcome-text">
+                        <p>We warmly welcome you to our fellowship of believers who gather in the name of the Lord Jesus Christ. We are simply Christians devoted to honoring God's Word as our final authority and growing together in grace and knowledge.</p>
+                        <div class="highlight-quote">
+                            "Whoever welcomes one of these little children in My name welcomes Me."
+                        </div>
+                        <p>All ages are cherished here. With open arms and reverent hearts, we invite you to join us as we seek to exalt Christ and be built up together in His truth.</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="#services" class="btn btn-primary">Join Our Worship</a>
+                <a href="#about" class="btn btn-outline">Discover More</a>
             </div>
         </div>
         <div class="hero-nav">
@@ -1225,7 +1754,7 @@
                         in establishing this work.
                     </p>
                     <p>
-                        As an Indian Brethren Church, we cherish the simplicity of New Testament Christianity. 
+                        As an Indian Brethren Assembly, we cherish the simplicity of New Testament Christianity. 
                         We gather without hierarchical structures, honoring the priesthood of all believers while 
                         being led by godly elders. Our worship is characterized by reverence, authenticity, and 
                         the centrality of Christ.
@@ -1236,43 +1765,43 @@
                         creating a bridge between traditional faith and contemporary life.
                     </p>
                 </div>
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.438 6.76c-.285.382-.507.88-.629 1.458-.13.562-.157 1.245-.157 1.921 0 .66.021 1.347.171 1.91.122.578.344 1.076.629 1.458.285.383.695.645 1.034.945.35.292.747.474 1.091.692.342.228.71.324 1.028.466.322.125.611.262.882.312.265.067.498.123.689.171.379.092.597.144.597.144l.514-1.93c0 0-.172-.072-.474-.197-.149-.062-.331-.136-.539-.222-.216-.07-.418-.217-.65-.35-.222-.148-.501-.253-.714-.463-.217-.201-.491-.362-.692-.604-.192-.249-.453-.446-.601-.737-.177-.269-.355-.535-.469-.844-.114-.212-.185-.448-.254-.68.213.032.427.065.65.065 1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3c0-2.193 1.807-4 4-4s4 1.807 4 4c0 1.654-1.346 3-3 3z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">Scripture-Centered</div>
-                        <div class="feature-desc">The Bible is our sole authority for faith and practice</div>
+            </div>
+            <div class="about-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.438 6.76c-.285.382-.507.88-.629 1.458-.13.562-.157 1.245-.157 1.921 0 .66.021 1.347.171 1.91.122.578.344 1.076.629 1.458.285.383.695.645 1.034.945.35.292.747.474 1.091.692.342.228.71.324 1.028.466.322.125.611.262.882.312.265.067.498.123.689.171.379.092.597.144.597.144l.514-1.93c0 0-.172-.072-.474-.197-.149-.062-.331-.136-.539-.222-.216-.07-.418-.217-.65-.35-.222-.148-.501-.253-.714-.463-.217-.201-.491-.362-.692-.604-.192-.249-.453-.446-.601-.737-.177-.269-.355-.535-.469-.844-.114-.212-.185-.448-.254-.68.213.032.427.065.65.065 1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3c0-2.193 1.807-4 4-4s4 1.807 4 4c0 1.654-1.346 3-3 3z"/>
+                        </svg>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">Christ-Focused</div>
-                        <div class="feature-desc">Every gathering centers on the person and work of Jesus</div>
+                    <div class="feature-title">Scripture-Centered</div>
+                    <div class="feature-desc">The Bible is our sole authority for faith and practice</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">Spirit-Led</div>
-                        <div class="feature-desc">Relying on the Holy Spirit's guidance in all things</div>
+                    <div class="feature-title">Christ-Focused</div>
+                    <div class="feature-desc">Every gathering centers on the person and work of Jesus</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">Community-Minded</div>
-                        <div class="feature-desc">Building authentic relationships through Christ's love</div>
+                    <div class="feature-title">Spirit-Led</div>
+                    <div class="feature-desc">Relying on the Holy Spirit's guidance in all things</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
                     </div>
+                    <div class="feature-title">Community-Minded</div>
+                    <div class="feature-desc">Building authentic relationships through Christ's love</div>
                 </div>
             </div>
         </div>
@@ -1389,7 +1918,7 @@
                     <h3 class="leader-name">Church Eldership</h3>
                     <p class="leader-role">Pastoral Oversight</p>
                     <p class="leader-bio">
-                        Following the Biblical pattern of Acts 14:23, our church is guided by 
+                        Following the Biblical pattern of Acts 14:23, our Assembly is guided by 
                         a plurality of elders who provide spiritual oversight, teaching, and 
                         pastoral care to the congregation.
                     </p>
@@ -1417,36 +1946,99 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Statement of Faith</h2>
-                <p class="section-subtitle">The foundational biblical truths upon which our church is built</p>
+                <p class="section-subtitle">The foundational biblical truths upon which our Assembly is built</p>
             </div>
-            <div class="faith-grid">
-                <div class="faith-item">
-                    <h3>1. The Bible</h3>
-                    <p>We believe the Holy Scriptures of the Old and New Testaments are the inspired and infallible Word of God. The Bible is completely trustworthy and is the final authority in all matters of faith and daily life.</p>
+            <div class="faith-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        1. The Bible
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe the Holy Scriptures of the Old and New Testaments are the inspired and infallible Word of God. The Bible is completely trustworthy and is the final authority in all matters of faith and daily life.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="faith-item">
-                    <h3>2. Salvation</h3>
-                    <p>We believe all people are sinners and in need of God’s salvation. Salvation is a gift of God’s grace, received through personal faith in Jesus Christ alone and not by any human works or merit. Through Christ’s atoning death on the cross, His burial, and His resurrection, sinful humans can be forgiven and reconciled to God.</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        2. Salvation
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe all people are sinners and in need of God's salvation. Salvation is a gift of God's grace, received through personal faith in Jesus Christ alone and not by any human works or merit. Through Christ's atoning death on the cross, His burial, and His resurrection, sinful humans can be forgiven and reconciled to God.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="faith-item">
-                    <h3>3. Jesus Christ</h3>
-                    <p>We believe that Jesus Christ is the eternal Son of God who became fully human while remaining fully divine. Conceived by the Holy Spirit and born of the virgin Mary, He lived a sinless life on earth. Jesus died on the cross as a perfect sacrifice for our sins, rose bodily from the dead, and ascended to heaven, where He reigns as Lord and Savior.</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        3. Jesus Christ
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe that Jesus Christ is the eternal Son of God who became fully human while remaining fully divine. Conceived by the Holy Spirit and born of the virgin Mary, He lived a sinless life on earth. Jesus died on the cross as a perfect sacrifice for our sins, rose bodily from the dead, and ascended to heaven, where He reigns as Lord and Savior.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="faith-item">
-                    <h3>4. The Holy Spirit</h3>
-                    <p>We believe the Holy Spirit is God at work in the world and in the believer. The Holy Spirit convicts the world of sin, gives new life to those who trust in Christ, and lives in every believer from the moment of salvation. He empowers and guides believers to live godly lives, to understand the Scriptures, and to serve Christ effectively, producing spiritual fruit in them.</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        4. The Holy Spirit
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe the Holy Spirit is God at work in the world and in the believer. The Holy Spirit convicts the world of sin, gives new life to those who trust in Christ, and lives in every believer from the moment of salvation. He empowers and guides believers to live godly lives, to understand the Scriptures, and to serve Christ effectively, producing spiritual fruit in them.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="faith-item">
-                    <h3>5. Priesthood of Believers</h3>
-                    <p>We believe in the priesthood of all true believers in Jesus Christ. Every Christian has direct access to God through Jesus, our Great High Priest, and no special human priesthood or clergy class is needed. All believers are a “royal priesthood” set apart to worship God and to serve one another in love, as each is gifted by the Holy Spirit.</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        5. Priesthood of Believers
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe in the priesthood of all true believers in Jesus Christ. Every Christian has direct access to God through Jesus, our Great High Priest, and no special human priesthood or clergy class is needed. All believers are a "royal priesthood" set apart to worship God and to serve one another in love, as each is gifted by the Holy Spirit.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="faith-item">
-                    <h3>6. Return of Christ</h3>
-                    <p>We believe that Jesus Christ will come again, personally and visibly, as King and Judge of all. We expect the imminent return of our Lord Jesus as He promised. At His coming there will be the resurrection of the dead and the final judgment – bringing everlasting life and joy to those who are saved, and righteous judgment to those who have rejected Christ.</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        6. Return of Christ
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe that Jesus Christ will come again, personally and visibly, as King and Judge of all. We expect the imminent return of our Lord Jesus as He promised. At His coming there will be the resurrection of the dead and the final judgment — bringing everlasting life and joy to those who are saved, and righteous judgment to those who have rejected Christ.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="faith-item">
-                    <h3>7. The Church</h3>
-                    <p>We believe that the Church is the one spiritual Body of Christ, a living community comprising all true believers from every nation and time. Jesus Christ alone is the Head of the Church. Local congregations of believers meet together for worship, prayer, the teaching of God’s Word, fellowship, and the observance of baptism and the Lord’s Supper. The Church is called to unity in Christ, holiness in life, loving service, and the proclamation of the Gospel to the world.</p>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        7. The Assembly
+                        <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We believe that the Assembly is the one spiritual Body of Christ, a living community comprising all true believers from every nation and time. Jesus Christ alone is the Head of the Assembly. Local congregations of believers meet together for worship, prayer, the teaching of God's Word, fellowship, and the observance of baptism and the Lord's Supper. The Assembly is called to unity in Christ, holiness in life, loving service, and the proclamation of the Gospel to the world.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1468,7 +2060,7 @@
                 </div>
                 <div class="ministry-card">
                     <h3>We Pray</h3>
-                    <p>We need Jesus's help in forgiving one another. To integrate Christian worldviews in our children's lives, we need Jesus's help. So we pray corporately that God will build His church.</p>
+                    <p>We need Jesus's help in forgiving one another. To integrate Christian worldviews in our children's lives, we need Jesus's help. So we pray corporately that God will build His Assembly.</p>
                 </div>
                 <div class="ministry-card">
                     <h3>We Study the Bible</h3>
@@ -1508,15 +2100,7 @@
                         <h4>Find Us Here</h4>
                     </div>
                     <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3462.8447947547877!2d-95.55887908489084!3d29.632018681970736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640dd3e9b7f3f3f%3A0x5f7f7f7f7f7f7f7f!2s10502%20Altonbury%20Ln%2C%20Houston%2C%20TX%2077031%2C%20USA!5e0!3m2!1sen!2sus!4v1635000000000!5m2!1sen!2sus" 
-                            width="100%" 
-                            height="300" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6935.112644691695!2d-95.5633685!3d29.6456269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640e7df1221fc0b%3A0x60995f332244d2d7!2s10502%20Altonbury%20Ln%2C%20Houston%2C%20TX%2077031!5e0!3m2!1sen!2sus!4v1756086240312!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -1542,7 +2126,6 @@
                         <a href="#leadership">Leadership</a>
                         <a href="#faith">Statement of Faith</a>
                         <a href="#ministry">Ministry Focus</a>
-                        <a href="#contact">Visit Us</a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -1590,13 +2173,14 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
         document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.service-card, .leader-card, .contact-item, .feature-item, .about-text, .ministry-card, .faith-item');
+            const elements = document.querySelectorAll('.service-card, .leader-card, .feature-item, .about-text, .ministry-card');
             elements.forEach(el => {
                 observer.observe(el);
             });
@@ -1608,9 +2192,11 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
@@ -1646,9 +2232,138 @@
             });
         });
 
+        // Statement of Faith Accordion
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const currentlyActive = document.querySelector('.accordion-header.active');
+                if (currentlyActive && currentlyActive !== this) {
+                    currentlyActive.classList.remove('active');
+                    currentlyActive.nextElementSibling.style.maxHeight = 0;
+                }
+                
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Mobile Navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const hamburger = document.getElementById('hamburger');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        function toggleMobileMenu() {
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            hamburger.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mobileNavOverlay) {
+            mobileNavOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close mobile menu when clicking on navigation links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+                // Smooth scroll to section
+                const targetId = link.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    setTimeout(() => {
+                        const navHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = target.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }
+            });
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
         // Initialize scripts on DOM loaded
         document.addEventListener('DOMContentLoaded', function() {
             initHeroSlider();
+            
+            // Add touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const heroSection = document.querySelector('.hero');
+            
+            if (heroSection) {
+                heroSection.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                heroSection.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+                
+                function handleSwipe() {
+                    if (touchEndX < touchStartX - 50) {
+                        // Swipe left - next slide
+                        showSlide(currentSlide + 1);
+                    }
+                    if (touchEndX > touchStartX + 50) {
+                        // Swipe right - previous slide
+                        showSlide(currentSlide - 1);
+                    }
+                }
+            }
+        });
+
+        // Performance optimization - Debounce scroll events
+        let scrollTimer;
+        window.addEventListener('scroll', function() {
+            if (scrollTimer) {
+                window.cancelAnimationFrame(scrollTimer);
+            }
+            scrollTimer = window.requestAnimationFrame(function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
         });
     </script>
 </body>
