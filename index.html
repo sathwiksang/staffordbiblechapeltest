@@ -176,7 +176,7 @@
         }
 
         .hero-slide.hero1 {
-            background-image: url('Images/Hero1.JPEG');
+            background-image: url('Images/IMG_9095.JPEG');
         }
 
         .hero-slide.hero2 {
@@ -215,7 +215,7 @@
 
         .hero-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+            font-size: clamp(1.4rem, 2.2vw, 2rem);
             font-weight: 300;
             color: var(--white);
             margin-bottom: 1.5rem;
@@ -283,7 +283,7 @@
         }
         
         /* Desktop-specific hero visual enhancements */
-        @media (min-width: 1024px) {
+        @media (min-width: 1030px) {
             .hero-visual {
                 background: radial-gradient(circle at 50% 50%, rgba(201, 168, 118, 0.1) 0%, transparent 70%);
                 border-radius: 20px;
@@ -690,18 +690,30 @@
 
         .leadership-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .leadership-grid .leader-card:last-child {
+            grid-column: 1 / -1;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .leader-card {
             text-align: center;
             position: relative;
             background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
-            padding: 3rem 2rem;
+            padding: 3.5rem 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 35px var(--shadow-light);
             transition: transform 0.3s ease;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .leader-card:hover {
@@ -709,9 +721,9 @@
         }
 
         .leader-photo {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 2rem;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
             position: relative;
             overflow: hidden;
             border-radius: 50%;
@@ -747,7 +759,8 @@
             font-size: 1.1rem;
             line-height: 1.8;
             text-align: justify;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+            flex: 1;
         }
 
         /* Statement of Faith Section - Accordion Redesign */
@@ -1458,7 +1471,7 @@
         }
 
         /* Medium phones and small tablets (≥ 600px) */
-        @media (min-width: 600px) and (max-width: 767px) {
+        @media (min-width: 600px) and (max-width: 1030px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1486,8 +1499,8 @@
             }
         }
 
-        /* Tablets portrait / small landscape (≥ 768px) */
-        @media (max-width: 768px) {
+        /* Tablets portrait / small landscape (≥ 1030px) */
+        @media (max-width: 1030px) {
             .navbar {
                 padding: clamp(0.8rem, 2vw, 1rem) 0;
             }
@@ -1604,9 +1617,10 @@
                 font-size: 1rem;
             }
         }
-
-        /* Small laptops and tablets landscape (≥ 992px) */
-        @media (min-width: 769px) and (max-width: 991px) {
+		
+        /* Small laptops and tablets landscape (≥ 1030px) */
+        @media (min-width: 769px) and (max-width: 1030px) {
+		/* Cherian Removed  
             .hero-content {
                 grid-template-columns: 1.3fr 0.7fr;
                 gap: 3rem;
@@ -1627,8 +1641,12 @@
             .hero-card {
                 max-width: 550px;
                 padding: 1.5rem 2.5rem;
-            }
-            
+            } 
+
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }  Cherian Removed */
+			
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 3rem;
@@ -1641,14 +1659,11 @@
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .leadership-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
 
-        /* Laptops (≥ 992px) */
-        @media (min-width: 992px) and (max-width: 1199px) {
+        } 
+
+        /* Laptops (≥ 1024px) */
+        @media (min-width: 1031px) and (max-width: 1199px) {
             .nav-container {
                 max-width: 1200px;
             }
@@ -1970,7 +1985,7 @@
                 <div class="mobile-contact-info">
                     <p><strong>Sunday Worship:</strong> 9:00 AM</p>
                     <p><strong>Address:</strong> 10502 Altonbury Lane</p>
-                    <p><strong>Phone:</strong> (281) 857-7538</p>
+                    <span id="eeb-504485-946324"></span><script type="text/javascript">(function(){var ml=")A%5g7Cne3(EsF-1tpP280rho",mi="296A29;296<@FH7429;BGH782912962C=<@FH7429;2CE:CD?02CED35>539D2962C=A29;",o="";for(var j=0,l=mi.length;j<l;j++){o+=ml.charAt(mi.charCodeAt(j)-48);}document.getElementById("eeb-504485-946324").innerHTML = decodeURIComponent(o);}());</script><noscript>*Protected Content*</noscript> 
                 </div>
             </div>
         </div>
@@ -1985,7 +2000,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-text">
-                <h1>A Place of Truth & Fellowship</h1>
+                <h1>A meeting place for worship, discipleship & fellowship</h1>
                 <p class="subtitle">Indian Brethren Assembly</p>
                 <p class="description">
                     Founded in 2014, we are a Christ-centered community devoted to the faithful study of 
@@ -2166,23 +2181,52 @@
                 </p>
             </div>
             <div class="leadership-grid">
-                                 <div class="leader-card">
-                     <div class="leader-photo">
-                         <img src="Images/Mathew Vairamon photo.jpg" alt="Dr. Mathew M. Vairamon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                     </div>
-                                           <h3 class="leader-name">Dr. Mathew M. Vairamon</h3>
-                      <p class="leader-role">Elder</p>
-                     <p class="leader-bio">
-                         Dr. Mathew M. Vairamon, M.S. LL.M, M.Div, Th.D, Ph.D is a full time faculty in Prairie View A & M University and an Attorney at Law. He teaches law and criminal justice classes in the University. He holds degrees from India and USA. He is mainly an immigration lawyer. He was an Advocate in India.
-                     </p>
-                     <p class="leader-bio">
-                         He was an Elder in Kundara Brethren Assembly from 1993 to 1999. Now he is serving as an Elder in the Stafford Bible Chapel. He is a speaker, teacher and a writer.
-                     </p>
-                     <p class="leader-bio">
-                         He is an Accredited Family and General Mediator from Harris County Disputer Resolution Center (DRC). He is doing spiritual ministries along with family mediations.
-                     </p>
-                 </div>
-                
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="leader-name">Dr. Mathew M. Vairamon</h3>
+                    <p class="leader-role">Founding Elder</p>
+                    <p class="leader-bio">
+                        Dr. Mathew M. Vairamon, M.S. LL.M, M.Div, Th.D, Ph.D is a full time faculty in Prairie View A & M University and an Attorney at Law. He teaches law and criminal justice classes in the University. He holds degrees from India and USA. He is mainly an immigration lawyer. He was an Advocate in India.
+                    </p>
+                    <p class="leader-bio">
+                        He was an Elder in Kundara Brethren Assembly from 1993 to 1999. Now he is serving as an Elder in the Stafford Bible Chapel. He is a speaker, teacher and a writer.
+                    </p>
+                    <p class="leader-bio">
+                        He is an Accredited Family and General Mediator from Harris County Disputer Resolution Center (DRC). He is doing spiritual ministries along with family mediations.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="leader-name">Church Eldership</h3>
+                    <p class="leader-role">Pastoral Oversight</p>
+                    <p class="leader-bio">
+                        Following the Biblical pattern of Acts 14:23, our Assembly is guided by 
+                        a plurality of elders who provide spiritual oversight, teaching, and 
+                        pastoral care to the congregation.
+                    </p>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1C1.89 5.7 1 6.3 1 7v10c0 .7.89 1.3 2.5 2 2.61.7 5.67 1 8.5 1s5.89-.3 8.5-1c1.61-.7 2.5-1.3 2.5-2V7c0-.7-.89-1.3-2.5-2zM12 16c-2.83 0-5.89-.3-8.5-1V9c2.61.7 5.67 1 8.5 1s5.89-.3 8.5-1v6c-2.61.7-5.67 1-8.5 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="leader-name">Ministry Leadership</h3>
+                    <p class="leader-role">Servant Ministry</p>
+                    <p class="leader-bio">
+                        Our ministry is carried out by dedicated brothers and sisters who serve 
+                        faithfully in various capacities, from children's ministry to hospitality, 
+                        each using their gifts to build up the body of Christ.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -2192,7 +2236,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Statement of Faith</h2>
-                <p class="section-subtitle">The foundational biblical truths upon which our Assembly is built</p>
+                <p class="section-subtitle">The foundational biblical truths upon which our Church is built</p>
             </div>
             <div class="faith-accordion">
                 <div class="accordion-item">
@@ -2275,14 +2319,14 @@
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        7. The Assembly
+                        7. The Church
                         <svg class="accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                         </svg>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
-                            <p>We believe that the Assembly is the one spiritual Body of Christ, a living community comprising all true believers from every nation and time. Jesus Christ alone is the Head of the Assembly. Local congregations of believers meet together for worship, prayer, the teaching of God’s Word, fellowship, and the observance of baptism and the Lord’s Supper. The Assembly is called to unity in Christ, holiness in life, loving service, and the proclamation of the Gospel to the world.</p>
+                            <p>We believe that the Church is the one spiritual Body of Christ, a living community comprising all true believers from every nation and time. Jesus Christ alone is the Head of the Church. Local congregations of believers meet together for worship, prayer, the teaching of God’s Word, fellowship, and the observance of baptism and the Lord’s Supper. The Church is called to unity in Christ, holiness in life, loving service, and the proclamation of the Gospel to the world.</p>
                         </div>
                     </div>
                 </div>
@@ -2306,7 +2350,7 @@
                 </div>
                 <div class="ministry-card">
                     <h3>We Pray</h3>
-                    <p>We need Jesus's help in forgiving one another. To integrate Christian worldviews in our children's lives, we need Jesus's help. So we pray corporately that God will build His Assembly.</p>
+                    <p>We need Jesus's help in forgiving one another. To integrate Christian worldviews in our children's lives, we need Jesus's help. So we pray corporately that God will build His Church.</p>
                 </div>
                 <div class="ministry-card">
                     <h3>We Study the Bible</h3>
@@ -2314,7 +2358,7 @@
                 </div>
                 <div class="ministry-card">
                     <h3>We Enjoy Fellowship</h3>
-                    <p>At church we call this connection "fellowship." We are brothers and sisters, related to one another as followers of Christ. We like to have meals together for fellowship.</p>
+                    <p>At Assembly we call this connection "fellowship." We are brothers and sisters, related to one another as followers of Christ. We like to have meals together for fellowship.</p>
                 </div>
             </div>
         </div>
@@ -2387,8 +2431,7 @@
                     <h5>Contact Us</h5>
                     <div class="contact-info">
                         <p><strong>Address:</strong><br>10502 Altonbury Lane<br>Houston, TX 77031</p>
-                        <p><strong>Phone:</strong> (281) 857-7538</p>
-                        <p><strong>Email:</strong> info@staffordbiblechapel.com</p>
+                        <span id="eeb-140799-567744"></span><script type="text/javascript">(function(){var ml="P-lo843ersp75).1tfm(anbFgiAhE0c2%Cd",mi="P6Q:P6LP6Q9@83EHP6L0K3E7P6JP6QPOG9@83EHP6LPOMCO4?=POM4<;1;<64P6QPOG:P6LP6Q:P6LP6Q9@83EHP6LLBDI2P6JP6QPOG9@83EHP6LPOMIEA3P5M9@DAA38RFIF27NKD:72>N3BP6QPOG:P6L",o="";for(var j=0,l=mi.length;j<l;j++){o+=ml.charAt(mi.charCodeAt(j)-48);}document.getElementById("eeb-140799-567744").innerHTML = decodeURIComponent(o);}());</script><noscript>*Protected Content*</noscript>
                     </div>
                 </div>
             </div>
